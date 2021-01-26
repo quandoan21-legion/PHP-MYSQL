@@ -1,4 +1,7 @@
 <?php
+
+namespace phpBasic\Controllers;
+
 class LoginController
 {
     public function login()

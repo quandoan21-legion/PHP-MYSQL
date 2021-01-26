@@ -1,4 +1,6 @@
 <?php
+
+namespace phpBasic\Core;
 class Request
 {
     public static function route()

@@ -1,4 +1,7 @@
 <?php
+
+namespace phpBasic\Controllers;
+
 class HomeController
 {
     public function home()

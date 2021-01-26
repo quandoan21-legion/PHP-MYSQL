@@ -1,6 +1,5 @@
 <?php 
-require_once "Request.php";
-require_once "Router.php";
+require "vendor.php";
 $aRouter = include "configs/router.php";
 
 function loadView($file){

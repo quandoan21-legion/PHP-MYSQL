@@ -1,4 +1,7 @@
 <?php
+
+namespace phpBasic\Core;
+
 class Route
 {
     private $aRouter;

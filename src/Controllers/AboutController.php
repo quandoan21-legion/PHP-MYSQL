@@ -1,4 +1,6 @@
 <?php
+namespace phpBasic\Controllers;
+
 class AboutController
 {
     public function about()
