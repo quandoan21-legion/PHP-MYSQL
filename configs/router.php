@@ -5,7 +5,8 @@ return [
         "viewHome"    => "HomeController@viewHome",
         "about"       => "AboutController@about",
         "viewAbout"   => "AboutController@viewAbout",
-        "login"     => "LoginController@login"
+        "login"     => "LoginController@login",
+        "getUser"     => "LoginController@getUser"
         
     ],
 

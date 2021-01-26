@@ -14,11 +14,6 @@ class Router
 
     public function direct($method, $route)
     {
-        // echo '<pre>';
-        // var_export($this->aRouter).'<br>';
-        // var_export($method).'<br>';
-        // var_export($route).'<br>';
-        // die;
         if (isset($this->aRouter[$method][$route])) {
             
             $currentRoute = $this->aRouter[$method][$route];
@@ -28,7 +23,7 @@ class Router
             $oControllerIndex = new $routeController;
             $oControllerIndex->{$aPasteRoute[1]}();
         }else {
-            
+            echo "404 not found";
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace Basic\Controllers;
-
+use Basic\Database\MySqlConnect as MySqlConnect;
 class LoginController
 {
     public function login()
@@ -9,8 +9,8 @@ class LoginController
         loadview("Login/index.php");
     }
 
-    public function handleLogin()
+    public function getUser()
     {
-
+        MySqlConnect::connect()->table('user')->pluck();
     }
 }

@@ -8,4 +8,7 @@
     <div class="link_route">
         <a href="login">Login</a>
     </div>
+    <div class="link_route">
+        <a href="getUser">user</a>
+    </div>
 </div>
