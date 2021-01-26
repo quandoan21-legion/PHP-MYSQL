@@ -31,10 +31,6 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
     );
 
     public static $prefixLengthsPsr4 = array (
-        'p' => 
-        array (
-            'phpBasic\\' => 9,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -92,6 +88,10 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
             'Composer\\XdebugHandler\\' => 23,
             'Composer\\Semver\\' => 16,
         ),
+        'B' => 
+        array (
+            'Basic\\' => 6,
+        ),
         'A' => 
         array (
             'Amp\\Sync\\' => 9,
@@ -106,10 +106,6 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
     );
 
     public static $prefixDirsPsr4 = array (
-        'phpBasic\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -253,6 +249,10 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
         'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
+        ),
+        'Basic\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Amp\\Sync\\' => 
         array (

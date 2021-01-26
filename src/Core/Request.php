@@ -1,6 +1,6 @@
 <?php
+namespace Basic\Core;
 
-namespace phpBasic\Core;
 class Request
 {
     public static function route()

@@ -1,8 +1,8 @@
 <?php
 
-namespace phpBasic\Core;
-
-class Route
+namespace Basic\Core;
+// use Basic\Controller\HomeController as HomeController;
+class Router
 {
     private $aRouter;
 
@@ -20,13 +20,15 @@ class Route
         // var_export($route).'<br>';
         // die;
         if (isset($this->aRouter[$method][$route])) {
+            
             $currentRoute = $this->aRouter[$method][$route];
             $aPasteRoute = explode("@", $currentRoute);
             include "src/Controllers/".$aPasteRoute[0].".php";
-            $oControllerIndex = new $aPasteRoute[0];
+            $routeController = "Basic\Controllers\\" . $aPasteRoute[0];
+            $oControllerIndex = new $routeController;
             $oControllerIndex->{$aPasteRoute[1]}();
         }else {
-            echo "404 NOT FOUND";
+            
         }
     }
 }

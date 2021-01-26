@@ -1,5 +1,5 @@
 <?php
-namespace phpBasic\Controllers;
+namespace Basic\Controllers;
 
 class AboutController
 {

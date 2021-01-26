@@ -1,5 +1,8 @@
 <?php 
-require "vendor.php";
+require "vendor/autoload.php";
+use Basic\Core\Router as Route;
+use Basic\Core\Request as Request;
+
 $aRouter = include "configs/router.php";
 
 function loadView($file){
