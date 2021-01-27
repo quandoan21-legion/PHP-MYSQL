@@ -1,5 +1,5 @@
 <?php
-require_once "src/Views/header.php";
+include "src/Views/header.php";
 include "src/Views/navigation.php";
 echo "this is about index";
-require_once "src/Views/footer.php";
+include "src/Views/footer.php";

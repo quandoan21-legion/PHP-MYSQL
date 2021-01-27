@@ -20,6 +20,8 @@ class Router
             $aPasteRoute = explode("@", $currentRoute);
             include "src/Controllers/".$aPasteRoute[0].".php";
             $routeController = "Basic\Controllers\\" . $aPasteRoute[0];
+            echo $routeController;
+            die;
             $oControllerIndex = new $routeController;
             $oControllerIndex->{$aPasteRoute[1]}();
         }else {

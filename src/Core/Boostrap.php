@@ -1,6 +1,6 @@
 <?php 
 require "vendor/autoload.php";
-use Basic\Core\Router as Route;
+use Basic\Core\Router as Router;
 use Basic\Core\Request as Request;
 
 $aRouter = include "configs/router.php";
@@ -19,5 +19,5 @@ function loadView($file){
 $route = Request::route();
 $method = $_SERVER['REQUEST_METHOD'];
 
-$oRouter = new Route();
+$oRouter = new Router();
 $oRouter->setRouter($aRouter)->direct($method, $route);
