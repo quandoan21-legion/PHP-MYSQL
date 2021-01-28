@@ -1,12 +1,13 @@
-<div>
-    <div class="link_route">
-        <a href="home">home</a>
-    </div>
-    <div class="link_route">
+<ul>
+    <li class="link_route">
+        <a href="viewHome">home</a>
+    </li>
+    <li class="link_route">
         <a href="about">about</a>
-    </div>
-    <div class="link_route">
+    </li>
+    <li class="link_route">
         <a href="login">Login</a>
+<<<<<<< HEAD
     </div>
     <div class="link_route">
         <a href="getUser">get user infomation</a>
@@ -21,3 +22,10 @@
         <a href="deleteUser">delete user</a>
     </div>
 </div>
+=======
+    </li>
+    <li class="link_route">
+        <a href="?route=getUser">user</a>
+    </li>
+</ul>
+>>>>>>> b479300394259e2471872357a24d6ac10143c719

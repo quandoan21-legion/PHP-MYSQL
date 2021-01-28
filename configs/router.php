@@ -2,7 +2,7 @@
 return [
     "GET" => [
         "home"        => "HomeController@home",
-        "viewHome"    => "HomeController@viewHome",
+        "viewhome"    => "HomeController@viewhome",
         "about"       => "AboutController@about",
         "viewAbout"   => "AboutController@viewAbout",
         "login"     => "LoginController@login",

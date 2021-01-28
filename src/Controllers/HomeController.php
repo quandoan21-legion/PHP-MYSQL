@@ -9,8 +9,8 @@ class HomeController
         loadview("Home/index.php");
     }
 
-    public function viewHome()
+    public function viewhome()
     {
-        loadview("Home/index.php");
+        loadview("Home/lamo.php");
     }
 }
