@@ -6,7 +6,10 @@ return [
         "about"       => "AboutController@about",
         "viewAbout"   => "AboutController@viewAbout",
         "login"     => "LoginController@login",
-        "getUser"     => "LoginController@getUser"
+        "getUser"     => "LoginController@getUser",
+        "insertUser"     => "LoginController@insertUser",
+        "updateUser"     => "LoginController@updateUser",
+        "deleteUser"     => "LoginController@deleteUser"
         
     ],
 

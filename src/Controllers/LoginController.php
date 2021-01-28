@@ -8,9 +8,31 @@ class LoginController
     {
         loadview("Login/index.php");
     }
-
+    
     public function getUser()
     {
-        MySqlConnect::connect()->table('user')->pluck();
+        
+        loadview("Login/getUser.php");
+
+    }
+
+    public function insertUser()
+    {
+        
+        loadview("Login/insertUser.php");
+
+    }
+
+    public function updateUser()
+    {
+        
+        loadview("Login/updateUser.php");
+
+    }
+    public function deleteUser()
+    {
+        
+        loadview("Login/deleteUser.php");
+
     }
 }
