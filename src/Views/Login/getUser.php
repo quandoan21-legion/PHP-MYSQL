@@ -25,9 +25,6 @@ while ($aResult = $oGetUser->fetch_assoc()) {
 }
 ?>
 
-<button class="ui button">
-    Follow
-</button>
 <?php
 include "src/Views/footer.php";
 ?>
