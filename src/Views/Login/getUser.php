@@ -20,10 +20,14 @@ $oGetUser = Basic\Database\MySqlConnect::connect()
 while ($aResult = $oGetUser->fetch_assoc()) {
     echo "<br> id:" . $aResult['ID'] .
         "<br> username:" . $aResult['userName'] .
-        "<br> password:" . $aResult['password'] . 
+        "<br> password:" . $aResult['password'] .
         "<br> address:" . $aResult['address'] . "<br>";
 }
 ?>
+
+<button class="ui button">
+    Follow
+</button>
 <?php
 include "src/Views/footer.php";
 ?>

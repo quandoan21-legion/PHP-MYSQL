@@ -1,8 +1,6 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-<<<<<<< HEAD
-RewriteRule ^(.+)$ index.php/?route=$1 [L,NC]
-=======
-RewriteRule ^(.+)$ ?route=$1 [L,NC]
->>>>>>> b479300394259e2471872357a24d6ac10143c719
+RewriteRule ^(.+)$ index.php?route=$1 [L,NC,QSA]
+
+
