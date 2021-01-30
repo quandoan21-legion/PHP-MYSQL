@@ -8,11 +8,11 @@ echo "GET USER INFORMATION PAGE" . '<br>';
 <?php
 $oGetUser = Basic\Database\MySqlConnect::connect()
     ->table('users')
-    ->where($aWhere = [
-        // 'password' => '123',
-        'userName' => 'quandoan21'
+    ->buildWhereQuery($aWhere = [
+        'userName' => 'qsdasduandoan21',
+        'email' => 'qdoan21@gmail.com'
     ])
-    ->orWhere($aOrWhere = [
+    ->buildWhereQuery($aOrWhere = [
         'userName' => 'sadwdsadw'
     ])
     ->select();
