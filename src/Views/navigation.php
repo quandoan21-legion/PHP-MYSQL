@@ -22,10 +22,16 @@
         <a href="deleteUser">delete user</a>
     </div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 123a47642dcd075f028ce33a3c1644b4a6681380
     </li>
     <li class="link_route">
         <a href="getUser">user</a>
     </li>
 </ul>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 123a47642dcd075f028ce33a3c1644b4a6681380
