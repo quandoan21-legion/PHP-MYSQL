@@ -2,18 +2,14 @@
 return [
     "GET" => [
         "home"        => "HomeController@home",
-        "viewhome"    => "HomeController@viewhome",
-        "about"       => "AboutController@about",
-        "viewAbout"   => "AboutController@viewAbout",
-        "login"     => "LoginController@login",
-        "getUser"     => "LoginController@getUser",
-        "insertUser"     => "LoginController@insertUser",
-        "updateUser"     => "LoginController@updateUser",
-        "deleteUser"     => "LoginController@deleteUser"
+        "login"        => "LoginController@login",
+        "register"        => "LoginController@register",
+
         
     ],
 
     "POST" => [
-        "handleLogin" => "LoginController@handleLogin"
+        "handleLogin" => "LoginController@handleLogin",
+        "handleRegister" => "LoginController@handleRegister"
     ]
 ];

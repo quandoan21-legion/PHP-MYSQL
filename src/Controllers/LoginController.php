@@ -6,33 +6,32 @@ class LoginController
 {
     public function login()
     {
-        loadview("Login/index.php");
+        loadview("Login/login.php");
     }
     
-    public function getUser()
+    public function register()
     {
         
-        loadview("Login/getUser.php");
+        loadview("Login/register.php");
 
     }
-
-    public function insertUser()
+    
+    public function handleLogin()
     {
-        
-        loadview("Login/insertUser.php");
-
-    }
-
-    public function updateUser()
-    {
-        
-        loadview("Login/updateUser.php");
-
-    }
-    public function deleteUser()
-    {
-        
-        loadview("Login/deleteUser.php");
-
+        session_unset();
+        $handleLogin = MySqlConnect::connect()
+        ->table('users')
+        ->where($aWhere = [
+                'userName' => $_POST['userName'],
+                'password' => $_POST['password']
+            ])
+        ->select();
+        $count = mysqli_num_rows($handleLogin);
+        if ($count == 1) {
+            $_SESSION["userName"] = $_POST['userName'];
+            loadView("Login/welcome.php");
+        }else {
+            loadView("Login/login.php");
+        }
     }
 }

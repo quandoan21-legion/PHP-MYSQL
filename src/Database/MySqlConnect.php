@@ -53,11 +53,26 @@ class MySqlConnect
         return $this;
     }
 
-    public function buildWhereQuery($aWhere, $condition = "AND")
+    public function where($aWhere, $condition = "AND")
     {
         $aKeys = array_keys($aWhere);
         $this->where =  array_reduce($aKeys, function ($carry, $key) use ($aWhere, $condition) {
-            $build = $key . "=" . '"' . $aWhere[$key] .'"';
+            $build = $key . " = " . '"' . $aWhere[$key] .'"';
+            if (!$carry) {
+                $carry = "{$build}";
+            }else {
+                $carry = "{$carry} {$condition} {$build}";
+            }
+            return $carry;            
+        });
+        return $this;
+    }
+
+    public function orWhere($aOrWhere, $condition = "AND")
+    {
+        $aKeys = array_keys($aOrWhere);
+        $this->orWhere = array_reduce($aKeys, function ($carry, $key) use ($aOrWhere, $condition) {
+            $build = $key . " = " . '"' . $aOrWhere[$key] .'"';
 
             if (!$carry) {
                 $carry = "{$build}";
@@ -69,31 +84,32 @@ class MySqlConnect
         return $this;
     }
 
-    public function set($set)
+    public function set($aSet)
     {
-        $c = array();
-        $keys = array_keys($set);
-        for ($i = 0; $i < count($set); $i++) {
-            $a = array();
-            array_push($a, $keys[$i], '"' . $set[$keys[$i]] . '"');
-            $b = implode(" = ", $a);
-            array_push($c, $b);
-        }
-        $this->set = implode(" AND ", $c);
-        return $this;
+        $aKeys = array_keys($aSet);
+        $this->set = array_reduce($aKeys, function ($carry, $key) use ($aSet) {
+            $build = $key . " = " . '"' . $aSet[$key] . '"';
+            if (!$carry) {
+                $carry = "{$build}";
+            } else {
+                $carry = "{$carry} , {$build}";
+            }
+            return $carry;
+        });
+        return $this;        
     }
 
     public function values($values)
     {
-        $a = array();
-        $b = array();
+        $aTableCol = array();
+        $aValues = array();
         $keys = array_keys($values);
         for ($i = 0; $i < count($values); $i++) {
-            array_push($a,  $keys[$i]);
-            array_push($b,  '"' . $values[$keys[$i]] . '"');
+            array_push($aTableCol,  $keys[$i]);
+            array_push($aValues,  '"' . $values[$keys[$i]] . '"');
         }
-        $this->tableCol = implode(", ", $a);
-        $this->aValues = implode(", ", $b);
+        $this->tableCol = implode(", ", $aTableCol);
+        $this->aValues = implode(", ", $aValues);
         return $this;
     }
 
@@ -102,20 +118,20 @@ class MySqlConnect
         $sql = "SELECT {$this->pluck} FROM $this->table";
         if (isset($this->where)) {
             $sql .= " WHERE $this->where";
-            if (isset($this->where)) {
-                $sql .= " OR $this->where";
+            if (isset($this->orWhere)) {
+                $sql .= " OR $this->orWhere";
             }
         }
-        echo $sql;
-        die;
-        $this->query =  self::$oDb->query($sql);
-        return $this->query;
+        $result =  self::$oDb->query($sql);
+        return $result;
     }
 
     public function insert()
     {
         $sql = "INSERT INTO $this->table ({$this->tableCol}) VALUES ({$this->aValues})";
         $this->query =  self::$oDb->query($sql);
+        // echo $sql;
+        // die;
         return $this->query;
     }
 
