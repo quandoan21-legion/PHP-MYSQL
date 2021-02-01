@@ -3,36 +3,23 @@ include "src/Views/header.php";
 include "src/Views/navigation.php";
 
 ?>
-
-<table class="ui striped table">
-    <?php
-    // echo "<pre>";
-    // var_dump($_SESSION["result"]);
-    // echo "</pre>";
-    // echo 'lmao';
-    // die;
-    ?>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Post Title</th>
-            <th>Post Content</th>
-            <th>Author Id</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="ui text container">
+    <div class="ui link cards">
         <?php foreach ($_SESSION["results"] as $value) : ?>
-            <tr>
-                <th> <?php echo $value->id ; ?></th>
-                <th> <?php echo $value->postTitle; ?></th>
-                <th> <?php echo $value->postContent; ?></th>
-                <th> <?php echo $value->author; ?></th>
-            </tr>
+            <div class="card">
+                <div class="image">
+                    <img src="<?php echo $value->img; ?>">
+                </div>
+                <div class="content">
+                    <div class="header"><?php echo $value->postTitle; ?></div>
+                    <div class="description">
+                        <?php echo $value->postContent; ?>
+                    </div>
+                </div>
+            </div>
         <?php endforeach ?>
-
-    </tbody>
-</table>
-
+    </div>
+</div>
 <?php
 include "src/Views/footer.php";
 ?>
