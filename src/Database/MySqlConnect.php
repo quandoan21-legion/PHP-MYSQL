@@ -122,7 +122,13 @@ class MySqlConnect
                 $sql .= " OR $this->orWhere";
             }
         }
+        // echo $sql;
+        // die;
         $result =  self::$oDb->query($sql);
+        // echo "<pre>";
+        // var_export($result);
+        // echo "</pre>";
+        // die;
         return $result;
     }
 
@@ -130,8 +136,6 @@ class MySqlConnect
     {
         $sql = "INSERT INTO $this->table ({$this->tableCol}) VALUES ({$this->aValues})";
         $this->query =  self::$oDb->query($sql);
-        // echo $sql;
-        // die;
         return $this->query;
     }
 
