@@ -20,6 +20,7 @@ include "src/Views/navigation.php";
         <?php endforeach ?>
     </div>
 </div>
+
 <?php
 include "src/Views/footer.php";
 ?>

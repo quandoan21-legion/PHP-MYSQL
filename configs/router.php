@@ -5,8 +5,7 @@ return [
         "login"    => "LoginController@login",
         "register" => "LoginController@register",
         "getPost" => "LoginController@getPost",
-
-
+        "createPost" => "LoginController@createPost"
     ],
 
     "POST" => [

@@ -9,5 +9,8 @@
     <a href="register" class="item">
         Register
     </a>
-    
+    <a href="createPost" class="item">
+        Write Post
+    </a>
+
 </div>

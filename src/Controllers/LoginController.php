@@ -17,6 +17,12 @@ class LoginController
         loadview("Login/register.php");
     }
 
+    public function createPost()
+    {
+
+        loadview("Login/createPost.php");
+    }
+
     public function handleLogin()
     {
         session_unset();
