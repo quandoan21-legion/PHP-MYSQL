@@ -12,5 +12,8 @@
     <a href="createPost" class="item">
         Write Post
     </a>
+    <a href="showPost" class="item">
+        Posts
+    </a>
 
 </div>

@@ -22,6 +22,18 @@ class LoginController
 
         loadview("Login/createPost.php");
     }
+    public function showPost()
+    {
+        $getAllPosts = MySqlConnect::connect()
+            ->table('post')
+            ->select();
+        // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC);
+        while ($result = mysqli_fetch_object($getAllPosts)) {
+            $results[] = $result;
+        }
+        $_SESSION["results"] = $results;
+        loadView("Login/showPosts.php");
+    }
 
     public function handleLogin()
     {
