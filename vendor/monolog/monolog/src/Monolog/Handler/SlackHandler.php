@@ -187,11 +187,11 @@ class SlackHandler extends SocketHandler
     }
 
     /**
-     * Username used by the bot when posting
+     * username used by the bot when posting
      */
-    public function setUsername(string $username): self
+    public function setusername(string $username): self
     {
-        $this->slackRecord->setUsername($username);
+        $this->slackRecord->setusername($username);
 
         return $this;
     }

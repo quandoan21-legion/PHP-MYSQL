@@ -22,6 +22,10 @@ class LoginController
 
         loadview("Login/createPost.php");
     }
+    // public static function checkDbExist()
+    // {
+        
+    // }
     public function showPost()
     {
         $getAllPosts = MySqlConnect::connect()
@@ -41,14 +45,14 @@ class LoginController
         $handleLogin = MySqlConnect::connect()
             ->table('users')
             ->where($aWhere = [
-                'userName' => $_POST['userName'],
+                'username' => $_POST['username'],
                 'password' => $_POST['password']
             ])
             ->select();
         $row = mysqli_fetch_array($handleLogin, MYSQLI_ASSOC);
         $count = mysqli_num_rows($handleLogin);
         if ($count == 1) {
-            $_SESSION["userName"] = $_POST['userName'];
+            $_SESSION["username"] = $_POST['username'];
             $_SESSION["id"] = $row['ID'];
             loadView("Login/createPost.php");
         } else {
@@ -63,7 +67,7 @@ class LoginController
         $checkAccExist = MySqlConnect::connect()
             ->table('users')
             ->where($aWhere = [
-                'userName' => $_POST['userName'],
+                'username' => $_POST['username'],
                 'email'    => $_POST['email']
             ], "OR")
             ->select();
@@ -76,7 +80,7 @@ class LoginController
             MySqlConnect::connect()
                 ->table('users')
                 ->values($aValues = [
-                    'userName' => $_POST['userName'],
+                    'username' => $_POST['username'],
                     'email'    => $_POST['email'],
                     'address'  => $_POST['address'],
                     'password' => $_POST['password']
@@ -85,7 +89,7 @@ class LoginController
 
             $_SESSION["errors"] =
                 array("Your account has been created.");
-            loadView("Login/login.php");
+            loadView("Login/register.php");
         }
     }
 

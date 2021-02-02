@@ -10,14 +10,14 @@ class GitCommitMsgContext implements ContextInterface
 {
     private $files;
     private $commitMessage;
-    private $userName;
+    private $username;
     private $userEmail;
 
-    public function __construct(FilesCollection $files, string $commitMessage, string $userName, string $userEmail)
+    public function __construct(FilesCollection $files, string $commitMessage, string $username, string $userEmail)
     {
         $this->files = $files;
         $this->commitMessage = $commitMessage;
-        $this->userName = $userName;
+        $this->username = $username;
         $this->userEmail = $userEmail;
     }
 
@@ -26,9 +26,9 @@ class GitCommitMsgContext implements ContextInterface
         return $this->commitMessage;
     }
 
-    public function getUserName(): string
+    public function getusername(): string
     {
-        return $this->userName;
+        return $this->username;
     }
 
     public function getUserEmail(): string

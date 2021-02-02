@@ -1,19 +1,25 @@
+<?php
+$aNav = include("configs/navigation.php");
+?>
 <div class="ui menu">
     <div class="header item">
         PAGE
     </div>
 
-    <a href="login" class="item">
-        Login
-    </a>
-    <a href="register" class="item">
-        Register
-    </a>
-    <a href="createPost" class="item">
-        Write Post
-    </a>
-    <a href="showPost" class="item">
-        Posts
-    </a>
+    <div class="header item">
+        <a href="createPost">Write Post</a>
+    </div>
+
+    <div class="header item">
+        <a href="showPost">Posts</a>
+    </div>
+
+    <div class="header item">
+        <a href="login">Login</a>
+    </div>
+
+    <div class="header item">
+        <a href="register">Register</a>
+    </div>
 
 </div>

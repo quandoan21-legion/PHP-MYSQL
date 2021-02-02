@@ -8,8 +8,8 @@ include "src/Views/navigation.php";
     ?>
     <form class="ui form" method="POST" action="handleRegister">
         <div class="field">
-            <label>Username</label>
-            <input type="text" name="userName" placeholder="Username">
+            <label>username</label>
+            <input type="text" name="username" placeholder="username">
         </div>
         <div class="field">
             <label>Email</label>
