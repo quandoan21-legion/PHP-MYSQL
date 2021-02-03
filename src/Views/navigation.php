@@ -1,25 +1,30 @@
 <?php
 $aNav = include("configs/navigation.php");
+if (!isset($_SESSION['id'])) {
+    $aNavVal = $aNav['non-users'];
+    // $aNavRoute = array_search();
+} else {
+    $aNavVal = $aNav['users'];
+}
+$aNavRoute = array_keys($aNavVal);
 ?>
 <div class="ui menu">
     <div class="header item">
         PAGE
     </div>
 
-    <div class="header item">
-        <a href="createPost">Write Post</a>
-    </div>
+    <?php 
+    echo "<pre>";
+    var_export(isset($_SESSION['id']));
+    echo "</pre>";
 
-    <div class="header item">
-        <a href="showPost">Posts</a>
-    </div>
-
-    <div class="header item">
-        <a href="login">Login</a>
-    </div>
-
-    <div class="header item">
-        <a href="register">Register</a>
-    </div>
-
+    foreach ($aNavRoute as $value) :
+        $name = array_search($value, $aNavVal);
+    ?>
+        <div class="header item">
+            <a href="<?php echo $value ?>">
+                <?php echo $aNavVal[$value];  ?>
+            </a>
+        </div>
+    <?php endforeach ?>
 </div>
