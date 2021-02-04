@@ -243,8 +243,7 @@ array_walk(
         $plural = 'all' !== $type ? 's' : '';
         ?>
         <li><a href="<?php esc_url('#tabs-documents-' . $type . $plural); ?>"><?php echo esc_html($title); ?></a></li>
-        <?php
-    }
+        <?php   }
 );
 
 $this->log(// ...

@@ -181,8 +181,7 @@ if ($a
 ?>
 <?php foreach ($blah as $boo) : ?>
     <?php if ($foo): ?>
-        <?php
-            if ($bar) {
+        <?php           if ($bar) {
             } else {
             }
         ?>

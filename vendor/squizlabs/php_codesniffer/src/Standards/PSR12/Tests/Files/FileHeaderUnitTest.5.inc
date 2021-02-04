@@ -1,5 +1,4 @@
-<?php
-    echo 'Some content';
+<?php   echo 'Some content';
 ?>
 <?php
 

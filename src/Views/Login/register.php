@@ -1,10 +1,10 @@
 <?php
+// session_start();
 include "src/Views/header.php";
 include "src/Views/navigation.php";
 ?>
 <div class="ui text container">
-    <?php
-    include "src/Views/messages.php";
+    <?php   include "src/Views/messages.php";
     ?>
     <form class="ui form" method="POST" action="handleRegister">
         <div class="field">

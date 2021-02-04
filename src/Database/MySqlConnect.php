@@ -1,5 +1,4 @@
 <?php
-
 namespace Basic\Database;
 
 class MySqlConnect
@@ -146,10 +145,25 @@ class MySqlConnect
         return $this;
     }
 
-    public function values($values)
+    public function values($aValues)
     {
-        $aTableCol = array();
-        $aValues = array();
+        $aKeys = array_keys($aValues);
+        $this->tableCol = implode(", ", $aKeys);
+        $this->aValues = array_reduce($aKeys, function ($carry, $key) use ($aValues) {
+            $build = '"' . $aValues[$key] . '"';
+            if (!$carry) {
+                $carry = "{$build}";
+            } else {
+                $carry = "{$carry} , {$build}";
+            }
+            return $carry;
+        });
+        return $this;
+    }
+
+    public function values1($values)
+    {
+        
         $keys = array_keys($values);
         for ($i = 0; $i < count($values); $i++) {
             array_push($aTableCol,  $keys[$i]);
@@ -176,8 +190,6 @@ class MySqlConnect
     public function createTable()
     {
         $sql = "CREATE TABLE {$this->tableName} ({$this->tableVals})";
-        // echo $sql;
-        // die;
         $result =  self::$oDb->query($sql);
         return $result;
     }

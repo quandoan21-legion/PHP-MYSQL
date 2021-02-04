@@ -175,8 +175,7 @@ endif;
 if ($foo === 1) {
     ?>
     <table><tr><td>
-    <?php
-    echo '2';
+    <?php   echo '2';
     ?>
     </td></tr></table>
     <?php

@@ -67,8 +67,7 @@ function get_some_value()
     ?>
     <pre>
     Some content goes here.
-    <?php
-    include_once 'blank.inc';
+    <?php   include_once 'blank.inc';
     include 'blank.inc';
     include_once 'blank.inc';
     include 'blank.inc';

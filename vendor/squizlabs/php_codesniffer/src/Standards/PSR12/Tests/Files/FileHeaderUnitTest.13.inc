@@ -15,8 +15,7 @@ class Foo {
         ?>
         <p>Demo</p>
 
-        <?php
-        /**
+        <?php       /**
          * Arbitrary docblock.
          */
         api_call();

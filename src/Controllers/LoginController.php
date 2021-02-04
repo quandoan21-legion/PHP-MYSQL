@@ -1,6 +1,6 @@
 <?php
-
 namespace Basic\Controllers;
+session_start();
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 
@@ -128,7 +128,7 @@ class LoginController
         $getAllPosts = MySqlConnect::connect()
             ->table('post')
             ->select();
-        // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC);
+        // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC); 
         while ($result = mysqli_fetch_object($getAllPosts)) {
             $results[] = $result;
         }

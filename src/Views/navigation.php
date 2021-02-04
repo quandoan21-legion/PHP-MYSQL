@@ -1,4 +1,5 @@
 <?php
+
 $aNav = include("configs/navigation.php");
 if (!isset($_SESSION['id'])) {
     $aNavVal = $aNav['non-users'];
