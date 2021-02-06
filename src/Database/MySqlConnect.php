@@ -1,6 +1,10 @@
 <?php
 namespace Basic\Database;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+use Basic\Database\ContructDatabase as ContructDatabase;
+use Basic\Database\ContructTables as ContructTables;
+
 class MySqlConnect
 {
     protected $where;
@@ -8,7 +12,7 @@ class MySqlConnect
     protected $sql = "";
     protected string $pluck =  "*";
     protected string $table;
-    protected static $oDb;
+    public static $oDb;
 
     private static $self;
 
@@ -16,14 +20,7 @@ class MySqlConnect
     public function __construct()
     {
         if (!self::$oDb) {
-            $oDbase = new \mysqli(
-                'localhost',
-                'root',
-                '',
-            );
-            $sql = "CREATE DATABASE IF NOT EXISTS basic_php ";
-            $oDbase->query($sql);
-
+            ContructDatabase::createDatabase();
             $oDb = new \mysqli(
                 'localhost',
                 'root',
@@ -31,7 +28,9 @@ class MySqlConnect
                 'basic_php'
             );
             self::$oDb = $oDb;
-            $this->checkTableExist();
+            ContructTables::createUsersTable();
+            ContructTables::createPostsTable();
+            // $this->checkTableExist();
 
         }
     }
@@ -44,45 +43,45 @@ class MySqlConnect
         return self::$self;
     }
 
-    public function checkTableExist()
-    {
-        $aDatabase   = include("configs/database.php");
-        $aTableNames = array_keys($aDatabase);
-        foreach ($aTableNames as $value) {
-            $sql = "SELECT * FROM $value";
-            $result = self::$oDb->query($sql);
-            if ($result == FALSE) {
-                $this->getTableName();
-            }
-        }
-    }
+    // public function checkTableExist()
+    // {
+    //     $aDatabase   = include("configs/database.php");
+    //     $aTableNames = array_keys($aDatabase);
+    //     foreach ($aTableNames as $value) {
+    //         $sql = "SELECT * FROM $value";
+    //         $result = self::$oDb->query($sql);
+    //         if ($result == FALSE) {
+    //             $this->getTableName();
+    //         }
+    //     }
+    // }
 
-    public function getTableName()
-    {
-        $aDatabase   = include("configs/database.php");
-        $aTableNames = array_keys($aDatabase);
-        foreach ($aTableNames as $tableName) {
-            $this->tableName = $tableName;
-            $this->getTableValues();
-        }
-    }
+    // public function getTableName()
+    // {
+    //     $aDatabase   = include("configs/database.php");
+    //     $aTableNames = array_keys($aDatabase);
+    //     foreach ($aTableNames as $tableName) {
+    //         $this->tableName = $tableName;
+    //         $this->getTableValues();
+    //     }
+    // }
 
-    public function getTableValues()
-    {
-        $aDatabase    = include("configs/database.php");
-        $aTableVal  = $aDatabase[$this->tableName];
-        $aTableCols = array_keys($aTableVal);
-        $this->tableVals = array_reduce($aTableCols, function ($carry, $key) use ($aTableVal) {
-            $build = $key . " " .  $aTableVal[$key];
-            if (!$carry) {
-                $carry = "{$build}";
-            } else {
-                $carry = "{$carry} , {$build}";
-            }
-            return $carry;
-        });
-        $this->createTable();
-    }
+    // public function getTableValues()
+    // {
+    //     $aDatabase    = include("configs/database.php");
+    //     $aTableVal  = $aDatabase[$this->tableName];
+    //     $aTableCols = array_keys($aTableVal);
+    //     $this->tableVals = array_reduce($aTableCols, function ($carry, $key) use ($aTableVal) {
+    //         $build = $key . " " .  $aTableVal[$key];
+    //         if (!$carry) {
+    //             $carry = "{$build}";
+    //         } else {
+    //             $carry = "{$carry} , {$build}";
+    //         }
+    //         return $carry;
+    //     });
+    //     $this->createTable();
+    // }
 
 
 
@@ -161,18 +160,6 @@ class MySqlConnect
         return $this;
     }
 
-    public function values1($values)
-    {
-        
-        $keys = array_keys($values);
-        for ($i = 0; $i < count($values); $i++) {
-            array_push($aTableCol,  $keys[$i]);
-            array_push($aValues,  '"' . $values[$keys[$i]] . '"');
-        }
-        $this->tableCol = implode(", ", $aTableCol);
-        $this->aValues = implode(", ", $aValues);
-        return $this;
-    }
 
     public function select()
     {
@@ -183,16 +170,17 @@ class MySqlConnect
                 $sql .= " OR $this->orWhere";
             }
         }
-        $result =  self::$oDb->query($sql);
+        $result = mysqli_fetch_assoc(self::$oDb->query($sql));
+        
         return $result;
     }
 
-    public function createTable()
-    {
-        $sql = "CREATE TABLE {$this->tableName} ({$this->tableVals})";
-        $result =  self::$oDb->query($sql);
-        return $result;
-    }
+    // public function createTable()
+    // {
+    //     $sql = "CREATE TABLE {$this->tableName} ({$this->tableVals})";
+    //     $result =  self::$oDb->query($sql);
+    //     return $result;
+    // }
 
     public function insert()
     {
@@ -227,4 +215,4 @@ class MySqlConnect
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }
-}
+} 

@@ -29,13 +29,15 @@ class LoginController
     public function showPost()
     {
         $getAllPosts = MySqlConnect::connect()
-            ->table('post')
+            ->table('posts')
             ->select();
         // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC);
-        while ($result = mysqli_fetch_object($getAllPosts)) {
-            $results[] = $result;
-        }
-        $_SESSION["results"] = $results;
+        // while ($result = mysqli_fetch_object($getAllPosts)) {
+        //     $results[] = $result;
+        // }
+        $result = $this->result;
+        var_dump($result);
+        die;
         loadView("Login/showPosts.php");
     }
 
@@ -46,7 +48,7 @@ class LoginController
             ->table('users')
             ->where($aWhere = [
                 'username' => $_POST['username'],
-                'password' => $_POST['password']
+                'matKhau' => $_POST['matKhau']
             ])
             ->select();
         $row = mysqli_fetch_array($handleLogin, MYSQLI_ASSOC);
@@ -57,7 +59,7 @@ class LoginController
             loadView("Login/createPost.php");
         } else {
             $_SESSION["errors"] =
-                array("Your username or password was incorrect.");
+                array("Your username or matKhau was incorrect.");
             loadView("Login/login.php");
         }
     }
@@ -82,8 +84,8 @@ class LoginController
                 ->values($aValues = [
                     'username' => $_POST['username'],
                     'email'    => $_POST['email'],
-                    'address'  => $_POST['address'],
-                    'password' => $_POST['password']
+                    'diaChi'  => $_POST['diaChi'],
+                    'matKhau' => $_POST['matKhau']
                 ])
                 ->insert();
 
@@ -115,7 +117,7 @@ class LoginController
             }
         }
         MySqlConnect::connect()
-            ->table('post')
+            ->table('posts')
             ->values($aValues = [
                 'author'   => $_POST['id'],
                 'postTitle'   => $_POST['postTitle'],
@@ -126,13 +128,17 @@ class LoginController
 
 
         $getAllPosts = MySqlConnect::connect()
-            ->table('post')
+            ->table('posts')
             ->select();
-        // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC); 
-        while ($result = mysqli_fetch_object($getAllPosts)) {
-            $results[] = $result;
-        }
-        $_SESSION["results"] = $results;
+        // // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC); 
+        // while ($result = mysqli_fetch_object($getAllPosts)) {
+        //     $results[] = $result;
+        // }
+        $_SESSION["results"] = $this->result;
+        echo "<pre>";
+        var_export($this->result);
+        echo "</pre>";
+        die;
         loadView("Login/showPosts.php");
     }
 }

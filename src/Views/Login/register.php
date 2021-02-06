@@ -17,11 +17,11 @@ include "src/Views/navigation.php";
         </div>
         <div class="field">
             <label>Password</label>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="matKhau" placeholder="Password">
         </div>
         <div class="field">
             <label>Address</label>
-            <input type="text" name="address" placeholder="Address">
+            <input type="text" name="diaChi" placeholder="Address">
         </div>
         <button class="ui button" type="submit">Register</button>
     </form>

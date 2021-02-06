@@ -13,7 +13,7 @@ include "src/Views/navigation.php";
         </div>
         <div class="field">
             <label>Password</label>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="matKhau" placeholder="Password">
         </div>
         <button class="ui button" type="submit">Login</button>
     </form>
