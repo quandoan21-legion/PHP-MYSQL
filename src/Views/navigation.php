@@ -15,9 +15,9 @@ $aNavRoute = array_keys($aNavVal);
     </div>
 
     <?php 
-    echo "<pre>";
-    var_export(isset($_SESSION['id']));
-    echo "</pre>";
+    // echo "<pre>";
+    // var_export(isset($_SESSION['id']));
+    // echo "</pre>";
 
     foreach ($aNavRoute as $value) :
         $name = array_search($value, $aNavVal);

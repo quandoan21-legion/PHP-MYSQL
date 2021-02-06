@@ -130,15 +130,11 @@ class LoginController
         $getAllPosts = MySqlConnect::connect()
             ->table('posts')
             ->select();
-        // // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC); 
-        // while ($result = mysqli_fetch_object($getAllPosts)) {
-        //     $results[] = $result;
-        // }
-        $_SESSION["results"] = $this->result;
-        echo "<pre>";
-        var_export($this->result);
-        echo "</pre>";
-        die;
+        $_SESSION["results"] = $getAllPosts;
+        // echo "<pre>";
+        // var_export($getAllPosts);
+        // echo "</pre>";
+        // die;
         loadView("Login/showPosts.php");
     }
 }
