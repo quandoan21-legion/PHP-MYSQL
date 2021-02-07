@@ -1,10 +1,9 @@
 <?php
-
 namespace Basic\Database;
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 
-class ContructPostsTables
+class ContructPostsTable
 {
     public static function createPostsTable()
     {

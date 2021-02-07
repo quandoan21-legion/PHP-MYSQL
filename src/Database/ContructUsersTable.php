@@ -1,10 +1,9 @@
 <?php
-
 namespace Basic\Database;
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 
-class ContructUsersTables
+class ContructUsersTable
 {
     public static function createUsersTable()
     {

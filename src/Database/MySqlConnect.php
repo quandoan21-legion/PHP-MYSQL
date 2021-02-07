@@ -3,8 +3,8 @@ namespace Basic\Database;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use Basic\Database\ContructDatabase as ContructDatabase;
-use Basic\Database\ContructUsersTables as ContructUsersTables;
-use Basic\Database\ContructPostsTables as ContructPostsTables;
+use Basic\Database\ContructUsersTable as ContructUsersTable;
+use Basic\Database\ContructPostsTable as ContructPostsTable;
 
 class MySqlConnect
 {
@@ -29,8 +29,8 @@ class MySqlConnect
                 'basic_php'
             );
             self::$oDb = $oDb;
-            ContructUsersTables::createUsersTable();
-            ContructPostsTables::createPostsTable();
+            ContructUsersTable::createUsersTable();
+            ContructPostsTable::createPostsTable();
             // $this->checkTableExist();
 
         }

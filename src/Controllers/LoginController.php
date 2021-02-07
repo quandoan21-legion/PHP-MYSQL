@@ -8,12 +8,13 @@ class LoginController
 {
     public function login()
     {
+        session_unset();
         loadview("Login/login.php");
     }
 
     public function register()
     {
-
+        session_unset();
         loadview("Login/register.php");
     }
 
@@ -51,11 +52,9 @@ class LoginController
                 'matKhau' => $_POST['matKhau']
             ])
             ->select();
-        $row = mysqli_fetch_array($handleLogin, MYSQLI_ASSOC);
-        $count = mysqli_num_rows($handleLogin);
-        if ($count == 1) {
+        $count = count($handleLogin);
+        if ($count > 1) {
             $_SESSION["username"] = $_POST['username'];
-            $_SESSION["id"] = $row['ID'];
             loadView("Login/createPost.php");
         } else {
             $_SESSION["errors"] =
@@ -73,8 +72,7 @@ class LoginController
                 'email'    => $_POST['email']
             ], "OR")
             ->select();
-        $count = mysqli_num_rows($checkAccExist);
-        if ($count == 1) {
+        if ($checkAccExist > 1) {
             $_SESSION["errors"] = array("Your username or email already exits.");
             loadView("Login/register.php");
         } else {

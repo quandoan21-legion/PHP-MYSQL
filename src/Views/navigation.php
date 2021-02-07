@@ -1,7 +1,7 @@
 <?php
 
 $aNav = include("configs/navigation.php");
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['username'])) {
     $aNavVal = $aNav['non-users'];
     // $aNavRoute = array_search();
 } else {
