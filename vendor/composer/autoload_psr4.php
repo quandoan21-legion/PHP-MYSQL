@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
     'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
@@ -31,15 +33,18 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\EventDispatcher\\' => array($vendorDir . '/psr/event-dispatcher/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src/Prophecy'),
     'PhpCsFixer\\' => array($vendorDir . '/friendsofphp/php-cs-fixer/src'),
     'Opis\\Closure\\' => array($vendorDir . '/opis/closure/src'),
     'OndraM\\CiDetector\\' => array($vendorDir . '/ondram/ci-detector/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'GrumPHP\\' => array($vendorDir . '/phpro/grumphp/src'),
     'Gitonomy\\Git\\' => array($vendorDir . '/gitonomy/gitlib/src/Gitonomy/Git'),
+    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib/Doctrine/Common/Lexer'),
     'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib/Doctrine/Common/Collections'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Composer\\XdebugHandler\\' => array($vendorDir . '/composer/xdebug-handler/src'),
     'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
     'Basic\\' => array($baseDir . '/src'),

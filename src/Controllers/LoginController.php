@@ -1,5 +1,7 @@
 <?php
+
 namespace Basic\Controllers;
+
 session_start();
 
 use Basic\Database\MySqlConnect as MySqlConnect;
@@ -18,6 +20,12 @@ class LoginController
         loadview("Login/register.php");
     }
 
+    public function logout()
+    {
+        session_destroy();
+        loadview("Login/login.php");
+    }
+
     public function createPost()
     {
 
@@ -25,21 +33,19 @@ class LoginController
     }
     // public static function checkDbExist()
     // {
-        
+
     // }
-    public function showPost()
+    public static function showPost()
     {
         $getAllPosts = MySqlConnect::connect()
             ->table('posts')
             ->select();
-        // $result = mysqli_fetch_all($getAllPosts, MYSQLI_ASSOC);
-        // while ($result = mysqli_fetch_object($getAllPosts)) {
-        //     $results[] = $result;
-        // }
-        $result = $this->result;
-        var_dump($result);
-        die;
-        loadView("Login/showPosts.php");
+        // echo "<pre>";
+        // var_dump($getAllPosts);
+        // echo "</pre>";
+        // die;
+        $_SESSION["Posts"] = $getAllPosts;
+        loadView("Login/showPost.php");
     }
 
     public function handleLogin()
@@ -58,7 +64,7 @@ class LoginController
             loadView("Login/createPost.php");
         } else {
             $_SESSION["errors"] =
-                array("Your username or matKhau was incorrect.");
+                array("Your username or password was incorrect.");
             loadView("Login/login.php");
         }
     }
@@ -86,10 +92,7 @@ class LoginController
                     'matKhau' => $_POST['matKhau']
                 ])
                 ->insert();
-
-            $_SESSION["errors"] =
-                array("Your account has been created.");
-            loadView("Login/register.php");
+            LoginController::handleLogin($_POST['username'], $_POST['matKhau']);
         }
     }
 
@@ -123,16 +126,6 @@ class LoginController
                 'img' => $path_filename_ext,
             ])
             ->insert();
-
-
-        $getAllPosts = MySqlConnect::connect()
-            ->table('posts')
-            ->select();
-        $_SESSION["results"] = $getAllPosts;
-        // echo "<pre>";
-        // var_export($getAllPosts);
-        // echo "</pre>";
-        // die;
-        loadView("Login/showPosts.php");
+            LoginController::showPost();
     }
 }

@@ -171,8 +171,7 @@ class MySqlConnect
                 $sql .= " OR $this->orWhere";
             }
         }
-        $result = mysqli_fetch_assoc(self::$oDb->query($sql));
-        
+        $result = mysqli_fetch_all(self::$oDb->query($sql));        
         return $result;
     }
 
