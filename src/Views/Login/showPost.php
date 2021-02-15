@@ -5,10 +5,10 @@ include "src/Views/navigation.php";
 
 <div class="ui text container">
     <div class="ui link cards">
-        <div class="card">
-            <?php
-            foreach ($_SESSION["Posts"] as $value) :
-            ?>
+        <?php
+        foreach ($_SESSION["Posts"] as $value) :
+        ?>
+            <div class="card">
                 <div class="image">
                     <img src="<?php echo $value['3']; ?>">
                 </div>
@@ -20,8 +20,8 @@ include "src/Views/navigation.php";
                         <?php echo $value['2']; ?>
                     </div>
                 </div>
-            <?php endforeach ?>
-        </div>
+            </div>
+        <?php endforeach ?>
     </div>
 </div>
 

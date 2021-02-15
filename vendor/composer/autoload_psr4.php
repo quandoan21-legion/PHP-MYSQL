@@ -34,6 +34,7 @@ return array(
     'Psr\\EventDispatcher\\' => array($vendorDir . '/psr/event-dispatcher/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src/Prophecy'),
+    'ProjectUnitTest\\' => array($baseDir . '/src'),
     'PhpCsFixer\\' => array($vendorDir . '/friendsofphp/php-cs-fixer/src'),
     'Opis\\Closure\\' => array($vendorDir . '/opis/closure/src'),
     'OndraM\\CiDetector\\' => array($vendorDir . '/ondram/ci-detector/src'),

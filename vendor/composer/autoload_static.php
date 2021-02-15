@@ -71,6 +71,7 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
+            'ProjectUnitTest\\' => 16,
             'PhpCsFixer\\' => 11,
         ),
         'O' => 
@@ -231,6 +232,10 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
+        'ProjectUnitTest\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'PhpCsFixer\\' => 
         array (
