@@ -17,7 +17,6 @@ class Router
         if (isset($this->aRouter[$method][$route])) {
             
             $currentRoute = $this->aRouter[$method][$route];
-            // echo $currentRoute;
             $aPasteRoute = explode("@", $currentRoute);
             include "src/Controllers/".$aPasteRoute[0].".php";
             $routeController = "Basic\Controllers\\" . $aPasteRoute[0];

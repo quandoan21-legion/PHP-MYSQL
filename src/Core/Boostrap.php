@@ -1,13 +1,11 @@
 <?php
 require "vendor/autoload.php";
-
 use Basic\Core\Router as Router;
 use Basic\Core\Request as Request;
-use Basic\Core\App as App;
+// use Basic\Core\App as App;
 
 $aRouter = include "configs/router.php";
-
-App::set('configs/database', include 'configs/database.php');
+\App::bind('configs/database', include "configs/database.php");
 
 function loadView($file)
 {

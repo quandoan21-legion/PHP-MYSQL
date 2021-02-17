@@ -5,6 +5,7 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use Basic\Database\ContructDatabase as ContructDatabase;
 use Basic\Database\ContructUsersTable as ContructUsersTable;
 use Basic\Database\ContructPostsTable as ContructPostsTable;
+use Basic\Core\App as App;
 
 class MySqlConnect
 {
@@ -23,15 +24,14 @@ class MySqlConnect
         if (!self::$oDb) {
             ContructDatabase::createDatabase();
             $oDb = new \mysqli(
-                'localhost',
-                'root',
-                '',
-                'basic_php'
+                App::get('host'),
+                App::get('username'),
+                App::get('password'),
+                App::get('db')
             );
             self::$oDb = $oDb;
             ContructUsersTable::createUsersTable();
             ContructPostsTable::createPostsTable();
-            // $this->checkTableExist();
 
         }
     }
@@ -43,48 +43,6 @@ class MySqlConnect
         }
         return self::$self;
     }
-
-    // public function checkTableExist()
-    // {
-    //     $aDatabase   = include("configs/database.php");
-    //     $aTableNames = array_keys($aDatabase);
-    //     foreach ($aTableNames as $value) {
-    //         $sql = "SELECT * FROM $value";
-    //         $result = self::$oDb->query($sql);
-    //         if ($result == FALSE) {
-    //             $this->getTableName();
-    //         }
-    //     }
-    // }
-
-    // public function getTableName()
-    // {
-    //     $aDatabase   = include("configs/database.php");
-    //     $aTableNames = array_keys($aDatabase);
-    //     foreach ($aTableNames as $tableName) {
-    //         $this->tableName = $tableName;
-    //         $this->getTableValues();
-    //     }
-    // }
-
-    // public function getTableValues()
-    // {
-    //     $aDatabase    = include("configs/database.php");
-    //     $aTableVal  = $aDatabase[$this->tableName];
-    //     $aTableCols = array_keys($aTableVal);
-    //     $this->tableVals = array_reduce($aTableCols, function ($carry, $key) use ($aTableVal) {
-    //         $build = $key . " " .  $aTableVal[$key];
-    //         if (!$carry) {
-    //             $carry = "{$build}";
-    //         } else {
-    //             $carry = "{$carry} , {$build}";
-    //         }
-    //         return $carry;
-    //     });
-    //     $this->createTable();
-    // }
-
-
 
     public function table($table)
     {
@@ -174,13 +132,6 @@ class MySqlConnect
         $result = mysqli_fetch_all(self::$oDb->query($sql));        
         return $result;
     }
-
-    // public function createTable()
-    // {
-    //     $sql = "CREATE TABLE {$this->tableName} ({$this->tableVals})";
-    //     $result =  self::$oDb->query($sql);
-    //     return $result;
-    // }
 
     public function insert()
     {

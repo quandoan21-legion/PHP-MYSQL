@@ -1,10 +1,9 @@
 <?php
 return [
-    $mysqli = [
+    $aDb = [
         'host'     => 'localhost',
         'username' => 'root',
         'password' => '',
         'db'       => 'basic_php'
     ]
 ];
- 
