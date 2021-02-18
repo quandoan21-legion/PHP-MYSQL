@@ -7,6 +7,7 @@ class ConstructPostsTable
 {
     public static function createPostsTable()
     {
+        MySqlConnect::mySqli();
         $sql = "CREATE TABLE IF NOT EXISTS posts(
             ID int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             postTitle varchar(50) NOT NULL UNIQUE,
@@ -14,6 +15,6 @@ class ConstructPostsTable
             img  varchar(50) NOT NULL ,
             author int(12)
             );";
-        MySqlConnect::$oDb->query($sql);
+        MySqlConnect::mySqli()->query($sql);
     }
 }

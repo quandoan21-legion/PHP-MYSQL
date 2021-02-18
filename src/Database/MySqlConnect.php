@@ -1,4 +1,5 @@
 <?php
+
 namespace Basic\Database;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
@@ -15,23 +16,25 @@ class MySqlConnect
     protected string $pluck =  "*";
     protected string $table;
     public static $oDb;
-
+    
     private static $self;
-
+    
+    public static function mySqli()
+    {
+        return
+        $oDb = new \mysqli(
+            App::get('configs/database')['host'],
+            App::get('configs/database')['username'],
+            App::get('configs/database')['password'],
+            App::get('configs/database')['db'],
+        );
+    }
 
     public function __construct()
     {
-        ConstructDatabase::createDatabase();
+        
         if (!self::$oDb) {
-            $oDb = new \mysqli(
-                App::get('configs/database')['host'],
-                App::get('configs/database')['username'],
-                App::get('configs/database')['password'],
-                App::get('configs/database')['db'],
-            );
-            self::$oDb = $oDb;
-            ConstructUsersTable::createUsersTable();
-            ConstructPostsTable::createPostsTable();
+            self::$oDb = MySqlConnect::mySqli();
         }
     }
 

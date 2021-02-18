@@ -3,9 +3,18 @@ require "vendor/autoload.php";
 use Basic\Core\Router as Router;
 use Basic\Core\Request as Request;
 use Basic\Core\App as App;
+use Basic\Database\ConstructDatabase as ConstructDatabase;
+use Basic\Database\ConstructUsersTable as ConstructUsersTable;
+use Basic\Database\ConstructPostsTable as ConstructPostsTable;
+use Basic\Database\CheckDatabaseExist as CheckDatabaseExist;
 
-$aRouter = include "configs/router.php";
+
 App::set('configs/database', include "configs/database.php");
+CheckDatabaseExist::CheckDatabaseExist();
+ConstructDatabase::createDatabase();
+ConstructUsersTable::createUsersTable();
+ConstructPostsTable::createPostsTable();
+$aRouter = include "configs/router.php";
 
 function loadView($file)
 {
