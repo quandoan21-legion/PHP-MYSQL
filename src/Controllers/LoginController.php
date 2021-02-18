@@ -31,19 +31,12 @@ class LoginController
 
         loadview("Login/createPost.php");
     }
-    // public static function checkDbExist()
-    // {
-
-    // }
+    
     public static function showPost()
     {
         $getAllPosts = MySqlConnect::connect()
             ->table('posts')
             ->select();
-        // echo "<pre>";
-        // var_dump($getAllPosts);
-        // echo "</pre>";
-        // die;
         $_SESSION["Posts"] = $getAllPosts;
         loadView("Login/showPost.php");
     }

@@ -2,9 +2,9 @@
 namespace Basic\Database;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
-use Basic\Database\ContructDatabase as ContructDatabase;
-use Basic\Database\ContructUsersTable as ContructUsersTable;
-use Basic\Database\ContructPostsTable as ContructPostsTable;
+use Basic\Database\ConstructDatabase as ConstructDatabase;
+use Basic\Database\ConstructUsersTable as ConstructUsersTable;
+use Basic\Database\ConstructPostsTable as ConstructPostsTable;
 use Basic\Core\App as App;
 
 class MySqlConnect
@@ -21,7 +21,7 @@ class MySqlConnect
 
     public function __construct()
     {
-        ContructDatabase::createDatabase();
+        ConstructDatabase::createDatabase();
         if (!self::$oDb) {
             $oDb = new \mysqli(
                 App::get('configs/database')['host'],
@@ -30,8 +30,8 @@ class MySqlConnect
                 App::get('configs/database')['db'],
             );
             self::$oDb = $oDb;
-            ContructUsersTable::createUsersTable();
-            ContructPostsTable::createPostsTable();
+            ConstructUsersTable::createUsersTable();
+            ConstructPostsTable::createPostsTable();
         }
     }
 

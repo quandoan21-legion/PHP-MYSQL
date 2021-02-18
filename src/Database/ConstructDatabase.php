@@ -4,7 +4,7 @@ use Basic\Core\App as App;
 // use Basic\Core\App as App;
 use Basic\Database\MySqlConnect as MySqlConnect;
 
-class ContructDatabase
+class ConstructDatabase
 {
     public static function createDatabase()
     {

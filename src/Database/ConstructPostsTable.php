@@ -3,7 +3,7 @@ namespace Basic\Database;
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 
-class ContructPostsTable
+class ConstructPostsTable
 {
     public static function createPostsTable()
     {
