@@ -11,9 +11,7 @@ use Basic\Database\CheckDatabaseExist as CheckDatabaseExist;
 
 App::set('configs/database', include "configs/database.php");
 CheckDatabaseExist::CheckDatabaseExist();
-ConstructDatabase::createDatabase();
-ConstructUsersTable::createUsersTable();
-ConstructPostsTable::createPostsTable();
+
 $aRouter = include "configs/router.php";
 
 function loadView($file)
