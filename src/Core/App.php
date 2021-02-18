@@ -4,10 +4,10 @@ namespace Basic\Core;
 
 class App
 {
-    private static array $aRegistery = [];
+    public static array $aRegistery = [];
 
     public static function  set($key, $val){
-        self::$aRegistery[$key] = "'" . $val . "'";
+        self::$aRegistery[$key] = $val;
         return true;
     } 
 

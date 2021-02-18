@@ -8,12 +8,13 @@ class ContructDatabase
 {
     public static function createDatabase()
     {
-        $dbName = App::get('db');
         $oDbase = new \mysqli(
-            App::get('host'),
-            App::get('username'),
-            App::get('password'),
+            App::get('configs/database')['host'],
+            App::get('configs/database')['username'],
+            App::get('configs/database')['password'],
+            
         );
+        $dbName = App::get('configs/database')['db'];
         $sql = "CREATE DATABASE IF NOT EXISTS $dbName ";
         $oDbase->query($sql);
     }

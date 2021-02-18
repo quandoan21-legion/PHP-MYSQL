@@ -21,18 +21,17 @@ class MySqlConnect
 
     public function __construct()
     {
+        ContructDatabase::createDatabase();
         if (!self::$oDb) {
-            ContructDatabase::createDatabase();
             $oDb = new \mysqli(
-                App::get('host'),
-                App::get('username'),
-                App::get('password'),
-                App::get('db')
+                App::get('configs/database')['host'],
+                App::get('configs/database')['username'],
+                App::get('configs/database')['password'],
+                App::get('configs/database')['db'],
             );
             self::$oDb = $oDb;
             ContructUsersTable::createUsersTable();
             ContructPostsTable::createPostsTable();
-
         }
     }
 
@@ -129,7 +128,7 @@ class MySqlConnect
                 $sql .= " OR $this->orWhere";
             }
         }
-        $result = mysqli_fetch_all(self::$oDb->query($sql));        
+        $result = mysqli_fetch_all(self::$oDb->query($sql));
         return $result;
     }
 
@@ -166,4 +165,4 @@ class MySqlConnect
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }
-} 
+}

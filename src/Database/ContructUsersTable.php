@@ -7,7 +7,6 @@ class ContructUsersTable
 {
     public static function createUsersTable()
     {
-
         $sql = "CREATE TABLE IF NOT EXISTS users(
             ID int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             username varchar(50) NOT NULL UNIQUE,

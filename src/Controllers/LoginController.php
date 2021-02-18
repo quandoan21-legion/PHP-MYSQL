@@ -48,7 +48,7 @@ class LoginController
         loadView("Login/showPost.php");
     }
 
-    public function handleLogin()
+    public static function handleLogin()
     {
         session_unset();
         $handleLogin = MySqlConnect::connect()
@@ -69,7 +69,7 @@ class LoginController
         }
     }
 
-    public function handleRegister()
+    public static function handleRegister()
     {
         $checkAccExist = MySqlConnect::connect()
             ->table('users')
@@ -92,11 +92,11 @@ class LoginController
                     'matKhau' => $_POST['matKhau']
                 ])
                 ->insert();
-            LoginController::handleLogin($_POST['username'], $_POST['matKhau']);
+            self::handleLogin($_POST['username'], $_POST['matKhau']);
         }
     }
 
-    public function handlePost()
+    public static function handlePost()
     {
         if (($_FILES['my_file']['name'] != "")) {
             // Where the file is going to be stored
@@ -126,6 +126,6 @@ class LoginController
                 'img' => $path_filename_ext,
             ])
             ->insert();
-            LoginController::showPost();
+            self::showPost();
     }
 }
