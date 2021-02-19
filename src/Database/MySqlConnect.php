@@ -3,9 +3,6 @@
 namespace Basic\Database;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
-use Basic\Database\ConstructDatabase as ConstructDatabase;
-use Basic\Database\ConstructUsersTable as ConstructUsersTable;
-use Basic\Database\ConstructPostsTable as ConstructPostsTable;
 use Basic\Core\App as App;
 
 class MySqlConnect
@@ -16,25 +13,21 @@ class MySqlConnect
     protected string $pluck =  "*";
     protected string $table;
     public static $oDb;
-    
     private static $self;
-    
-    public static function mySqli()
-    {
-        return
-        $oDb = new \mysqli(
-            App::get('configs/database')['host'],
-            App::get('configs/database')['username'],
-            App::get('configs/database')['password'],
-            App::get('configs/database')['db'],
-        );
-    }
+    public  ?string $connectErr = null;
 
     public function __construct()
     {
-        
         if (!self::$oDb) {
-            self::$oDb = MySqlConnect::mySqli();
+            self::$oDb = new \mysqli(
+                App::get('configs/database')['host'],
+                App::get('configs/database')['username'],
+                App::get('configs/database')['password'],
+                App::get('configs/database')['db'],
+            );
+            if (self::$oDb->connect_errno) {
+                $this->connectErr = "fail to connect Mysql becasue of: " . self::$oDb->connect_error;
+            }
         }
     }
 

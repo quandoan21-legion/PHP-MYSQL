@@ -10,7 +10,6 @@ class Request
 
     public static function method()
     {
-        Request::route();
         return $_SERVER['REQUEST_METHOD'];
     }
 }

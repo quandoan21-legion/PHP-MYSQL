@@ -8,14 +8,8 @@ class ConstructDatabase
 {
     public static function createDatabase()
     {
-        $oDbase = new \mysqli(
-            App::get('configs/database')['host'],
-            App::get('configs/database')['username'],
-            App::get('configs/database')['password'],
-            
-        );
         $dbName = App::get('configs/database')['db'];
         $sql = "CREATE DATABASE IF NOT EXISTS $dbName ";
-        $oDbase->query($sql);
+        MySqlConnect::$oDb->query($sql);
     }
 }

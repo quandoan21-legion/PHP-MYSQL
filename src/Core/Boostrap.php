@@ -1,16 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require "vendor/autoload.php";
 use Basic\Core\Router as Router;
 use Basic\Core\Request as Request;
 use Basic\Core\App as App;
-use Basic\Database\ConstructDatabase as ConstructDatabase;
-use Basic\Database\ConstructUsersTable as ConstructUsersTable;
-use Basic\Database\ConstructPostsTable as ConstructPostsTable;
-use Basic\Database\CheckDatabaseExist as CheckDatabaseExist;
-
 
 App::set('configs/database', include "configs/database.php");
-CheckDatabaseExist::CheckDatabaseExist();
 
 $aRouter = include "configs/router.php";
 
@@ -26,7 +22,7 @@ function loadView($file)
 }
 
 $route = Request::route();
-$method = $_SERVER['REQUEST_METHOD'];
+$method = Request::method();
 
 $oRouter = new Router();
 $oRouter->setRouter($aRouter)->direct($method, $route);

@@ -14,6 +14,6 @@ class ConstructUsersTable
             matKhau  varchar(50) NOT NULL ,
             diaChi varchar(50) 
             );";
-        MySqlConnect::mySqli()->query($sql);
+        MySqlConnect::$oDb->query($sql);
     }
 }
