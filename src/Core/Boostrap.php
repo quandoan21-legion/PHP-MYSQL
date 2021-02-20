@@ -5,10 +5,11 @@ require "vendor/autoload.php";
 use Basic\Core\Router as Router;
 use Basic\Core\Request as Request;
 use Basic\Core\App as App;
+use Basic\Database\MySqlConnect as MySqlConnect;
 
 App::set('configs/database', include "configs/database.php"); 
 $aRouter = include "configs/router.php";
-
+MySqlConnect::connect();
 function loadView($file)
 {
   if (strpos($file, ".php") === false) {
