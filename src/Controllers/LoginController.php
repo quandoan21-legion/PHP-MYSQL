@@ -43,7 +43,6 @@ class LoginController
 
     public static function handleLogin()
     {
-        session_unset();
         $handleLogin = MySqlConnect::connect()
             ->table('users')
             ->where($aWhere = [
@@ -51,8 +50,7 @@ class LoginController
                 'matKhau' => $_POST['matKhau']
             ])
             ->select();
-        $count = count($handleLogin);
-        if ($count > 1) {
+        if (count($handleLogin) == 1) {
             $_SESSION["username"] = $_POST['username'];
             loadView("Login/createPost.php");
         } else {
@@ -71,11 +69,10 @@ class LoginController
                 'email'    => $_POST['email']
             ], "OR")
             ->select();
-        if ($checkAccExist > 1) {
+        if (count($checkAccExist) > 1) {
             $_SESSION["errors"] = array("Your username or email already exits.");
             loadView("Login/register.php");
         } else {
-            session_unset();
             MySqlConnect::connect()
                 ->table('users')
                 ->values($aValues = [

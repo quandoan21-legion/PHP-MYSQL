@@ -4,7 +4,8 @@ namespace Basic\Database;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use Basic\Core\App as App;
-
+use Basic\Database\ConstructPostsTable as ConstructPostsTable;
+use Basic\Database\ConstructUsersTable as ConstructUsersTable;
 class MySqlConnect
 {
     protected $where;
@@ -29,6 +30,8 @@ class MySqlConnect
                 echo "Failed to connect to MySQL: " . self::$oDb->connect_error;
                 die;
             }
+            ConstructPostsTable::createPostsTable();
+            ConstructUsersTable::createUsersTable();
         }
     }
 
@@ -144,8 +147,6 @@ class MySqlConnect
         if (isset($this->orWhere)) {
             $sql .= " OR $this->orWhere";
         }
-        echo $sql;
-        die;
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }
