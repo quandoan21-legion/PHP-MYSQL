@@ -3,5 +3,5 @@ return [
     'host'     => 'localhost',
     'username' => 'root',
     'password' => '',
-    'db'       => 'basic_php'
+    'db'       => 'basic_php12321'
 ];

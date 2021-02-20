@@ -26,7 +26,8 @@ class MySqlConnect
                 App::get('configs/database')['db'],
             );
             if (self::$oDb->connect_errno) {
-                $this->connectErr = "fail to connect Mysql becasue of: " . self::$oDb->connect_error;
+                echo "Failed to connect to MySQL: " . self::$oDb->connect_error;
+                die;
             }
         }
     }
