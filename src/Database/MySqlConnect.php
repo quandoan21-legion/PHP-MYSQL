@@ -26,11 +26,6 @@ class MySqlConnect
                 App::get('configs/database')['password'],
                 App::get('configs/database')['db']
             );
-            // echo "<pre>";
-            // $arr = (App::$aRegistery['configs/database']['host']);
-            // var_dump($arr);
-            // echo "</pre>";
-            // die;
             if (self::$oDb->connect_errno) {
                 echo "Failed to connect to MySQL: " . self::$oDb->connect_error;
                 die;
