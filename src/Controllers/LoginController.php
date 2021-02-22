@@ -2,7 +2,6 @@
 
 namespace Basic\Controllers;
 
-session_start();
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 
@@ -10,7 +9,7 @@ class LoginController
 {
     public function login()
     {
-        session_unset();
+        session_start();
         loadview("Login/login.php");
     }
 
@@ -22,7 +21,7 @@ class LoginController
 
     public function logout()
     {
-        session_destroy();
+        session_unset();
         loadview("Login/login.php");
     }
 
@@ -69,7 +68,7 @@ class LoginController
                 'email'    => $_POST['email']
             ], "OR")
             ->select();
-        if (count($checkAccExist) > 1) {
+        if (count($checkAccExist) > 0) {
             $_SESSION["errors"] = array("Your username or email already exits.");
             loadView("Login/register.php");
         } else {

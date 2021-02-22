@@ -71,7 +71,6 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
-            'ProjectUnitTest\\' => 16,
             'PhpCsFixer\\' => 11,
         ),
         'O' => 
@@ -104,6 +103,7 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
         'B' => 
         array (
             'Basic\\' => 6,
+            'BasicTest\\' => 10,
         ),
         'A' => 
         array (
@@ -233,10 +233,6 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
-        'ProjectUnitTest\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'PhpCsFixer\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofphp/php-cs-fixer/src',
@@ -290,6 +286,10 @@ class ComposerStaticInitabdc43dfb920dce428ead6e9ee6c850a
             0 => __DIR__ . '/..' . '/composer/semver/src',
         ),
         'Basic\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+        'BasicTest\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
