@@ -8,9 +8,9 @@ class AppTest extends TestCase
 {
     public function testIsString()
     {
-        $oSet = App::$aRegistery;
+        $oSet = App::get('configs/database');
 
-        $this->assertIsArray($oSet);
+        $this->assertIsString($oSet);
         $this->assertNotNull($oSet);
     }
 }
