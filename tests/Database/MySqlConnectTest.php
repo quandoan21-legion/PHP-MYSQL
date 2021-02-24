@@ -4,7 +4,7 @@ namespace BasicTest\Database;
 
 use PHPUnit\Framework\TestCase;
 use Basic\Database\MySqlConnect;
-// use Basic\Controllers\LoginController;
+use Basic\Controllers\LoginController;
 
 class MySqlConnectTest extends TestCase
 {
@@ -13,8 +13,7 @@ class MySqlConnectTest extends TestCase
         $oSelect = MySqlConnect::connect()
             ->table('posts')
             ->select();
-
         $this->assertIsArray($oSelect);
-        $this->assertEmpty($oSelect);
     }
+    
 }

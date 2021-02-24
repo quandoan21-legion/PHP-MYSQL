@@ -44,14 +44,14 @@ class LoginController
     {
         $handleLogin = MySqlConnect::connect()
             ->table('users')
-            ->where($aWhere = [
+            ->where([
                 'username' => $_POST['username'],
-                'matKhau' => $_POST['matKhau']
+                'matKhau'  => $_POST['matKhau']
             ])
             ->select();
         if (count($handleLogin) == 1) {
             $_SESSION["username"] = $_POST['username'];
-            loadView("Login/createPost.php");
+            loadView("Login/welcome.php");
         } else {
             $_SESSION["errors"] =
                 array("Your username or password was incorrect.");
@@ -63,7 +63,7 @@ class LoginController
     {
         $checkAccExist = MySqlConnect::connect()
             ->table('users')
-            ->where($aWhere = [
+            ->where([
                 'username' => $_POST['username'],
                 'email'    => $_POST['email']
             ], "OR")
@@ -72,15 +72,16 @@ class LoginController
             $_SESSION["errors"] = array("Your username or email already exits.");
             loadView("Login/register.php");
         } else {
-            MySqlConnect::connect()
+            $checkAccExist = MySqlConnect::connect()
                 ->table('users')
                 ->values($aValues = [
                     'username' => $_POST['username'],
                     'email'    => $_POST['email'],
-                    'diaChi'  => $_POST['diaChi'],
-                    'matKhau' => $_POST['matKhau']
+                    'diaChi'   => $_POST['diaChi'],
+                    'matKhau'  => $_POST['matKhau']
                 ])
                 ->insert();
+              
             self::handleLogin($_POST['username'], $_POST['matKhau']);
         }
     }
@@ -89,12 +90,12 @@ class LoginController
     {
         if (($_FILES['my_file']['name'] != "")) {
             // Where the file is going to be stored
-            $target_dir = "assets/img/";
-            $file = $_FILES['my_file']['name'];
-            $path = pathinfo($file);
-            $filename = $path['filename'];
-            $ext = $path['extension'];
-            $temp_name = $_FILES['my_file']['tmp_name'];
+            $target_dir        = "assets/img/";
+            $file              = $_FILES['my_file']['name'];
+            $path              = pathinfo($file);
+            $filename          = $path['filename'];
+            $ext               = $path['extension'];
+            $temp_name         = $_FILES['my_file']['tmp_name'];
             $path_filename_ext = $target_dir . $filename . "." . $ext;
 
             // Check if file already exists
@@ -108,11 +109,11 @@ class LoginController
         }
         MySqlConnect::connect()
             ->table('posts')
-            ->values($aValues = [
-                'author'   => $_POST['id'],
+            ->values([
                 'postTitle'   => $_POST['postTitle'],
                 'postContent' => $_POST['postContent'],
-                'img' => $path_filename_ext,
+                'img'         => $path_filename_ext,
+                'author'      => $_POST['id'],
             ])
             ->insert();
             self::showPost();

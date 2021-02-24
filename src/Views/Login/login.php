@@ -21,3 +21,4 @@ include "src/Views/navigation.php";
 <?php
 include "src/Views/footer.php";
 ?>
+
