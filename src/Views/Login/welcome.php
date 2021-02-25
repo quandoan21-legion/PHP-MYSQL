@@ -6,7 +6,7 @@ include "src/Views/messages.php";
 
 <div class="ui text container">
     <?php
-    echo "welcome " . $_SESSION['username'];
+    echo "welcome " . $_SESSION['usernameOrEmail'];
     ?>
 </div>
 

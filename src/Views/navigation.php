@@ -1,7 +1,7 @@
 <?php
 
 $aNav = include("configs/navigation.php");
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['usernameOrEmail'])) {
     $aNavVal = $aNav['non-users'];
     // $aNavRoute = array_search();
 } else {
@@ -14,11 +14,7 @@ $aNavRoute = array_keys($aNavVal);
         PAGE
     </div>
 
-    <?php 
-    // echo "<pre>";
-    // var_export(isset($_SESSION['id']));
-    // echo "</pre>";
-
+    <?php
     foreach ($aNavRoute as $value) :
         $name = array_search($value, $aNavVal);
     ?>

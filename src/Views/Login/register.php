@@ -8,7 +8,7 @@ include "src/Views/navigation.php";
     ?>
     <form class="ui form" method="POST" action="handleRegister">
         <div class="field">
-            <label>username</label>
+            <label>Username</label>
             <input type="text" name="username" placeholder="username">
         </div>
         <div class="field">
@@ -17,11 +17,11 @@ include "src/Views/navigation.php";
         </div>
         <div class="field">
             <label>Password</label>
-            <input type="password" name="matKhau" placeholder="Password">
+            <input type="password" name="password" placeholder="Password">
         </div>
         <div class="field">
             <label>Address</label>
-            <input type="text" name="diaChi" placeholder="Address">
+            <input type="text" name="address" placeholder="Address">
         </div>
         <button class="ui button" type="submit">Register</button>
     </form>

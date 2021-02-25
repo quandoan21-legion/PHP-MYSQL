@@ -6,18 +6,18 @@ include "src/Views/navigation.php";
 <div class="ui text container">
     <div class="ui link cards">
         <?php
-        foreach ($_SESSION["Posts"] as $value) :
+        foreach ($_SESSION["posts"] as $value) :
         ?>
             <div class="card">
                 <div class="image">
-                    <img src="<?php echo $value['3']; ?>">
+                    <img src="<?php echo $value['3'] ?>">
                 </div>
                 <div class="content">
                     <div class="header">
-                        <?php echo $value['1']; ?>;
+                        <?php echo $value['1'] ?>;
                     </div>
                     <div class="description">
-                        <?php echo $value['2']; ?>
+                        <?php echo $value['2'] ?>
                     </div>
                 </div>
             </div>

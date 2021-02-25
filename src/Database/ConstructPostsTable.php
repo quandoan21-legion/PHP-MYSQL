@@ -8,11 +8,12 @@ class ConstructPostsTable
     public static function createPostsTable()
     {
         
-        $sql = "CREATE TABLE IF NOT EXISTS posts(
-            ID int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-            postTitle varchar(50) NOT NULL ,
-            postContent varchar(50) NOT NULL ,
-            img  varchar(50) NOT NULL 
+        $sql = "CREATE TABLE IF NOT EXISTS `posts`(
+            `id` int(12) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+            `post_title` varchar(50) NOT NULL ,
+            `post_content` varchar(50) NOT NULL ,
+            `img`  varchar(50) NOT NULL ,
+            `author_id` int(12) NOT NULL
             );";
         MySqlConnect::$oDb->query($sql);
     }

@@ -64,17 +64,19 @@ class LoginControllerTest extends TestCase
     {
         $randomString = LoginControllerTest::getRandomString();
         $randomEmail = LoginControllerTest::getRandomEmail();
+        
         $_POST['username'] = $randomString;
         $_POST['email']    = $randomEmail;
-        $_POST['diaChi']   = $randomString;
-        $_POST['matKhau']  = $randomString;
+        $_POST['address']   = $randomString;
+        $_POST['password']  = $randomString;
+        
         $createAcc = MySqlConnect::connect()
             ->table('users')
             ->values([
                 'username' => $_POST['username'],
                 'email'    => $_POST['email'],
-                'diaChi'   => $_POST['diaChi'],
-                'matKhau'  => $_POST['matKhau']
+                'address'   => $_POST['address'],
+                'password'  => $_POST['password']
             ])
             ->insert();
         $this->assertTrue($createAcc);
@@ -82,12 +84,12 @@ class LoginControllerTest extends TestCase
     public function testLoginFunction()
     {
         $_POST['username'] = 'qdoan21';
-        $_POST['matKhau']  = '123';
+        $_POST['password']  = '123';
         $aResult = MySqlConnect::connect()
             ->table('users')
             ->where([
                 'username' => $_POST['username'],
-                'matKhau'  => $_POST['matKhau']
+                'password'  => $_POST['password']
             ])
             ->select();
         $this->assertNotEmpty($aResult);
