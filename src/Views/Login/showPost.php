@@ -14,7 +14,7 @@ include "src/Views/navigation.php";
                 </div>
                 <div class="content">
                     <div class="header">
-                        <?php echo $value['1'] ?>;
+                        <?php echo $value['1'] ?>
                     </div>
                     <div class="description">
                         <?php echo $value['2'] ?>

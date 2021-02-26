@@ -32,6 +32,7 @@ class MySqlConnect
             }
             ConstructPostsTable::createPostsTable();
             ConstructUsersTable::createUsersTable();
+            ConstructUsersTable::createDummyAccount();
         }
     }
 

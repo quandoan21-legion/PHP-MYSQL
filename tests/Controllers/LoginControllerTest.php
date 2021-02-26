@@ -3,12 +3,11 @@
 namespace BasicTest\Controllers;
 
 use PHPUnit\Framework\TestCase;
-use Basic\Controllers\LoginController;
 use Basic\Database\MySqlConnect;
 
 class LoginControllerTest extends TestCase
 {
-    public static function getRandomString()
+    public function getRandomString()
     {
         $n = 10;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -22,7 +21,7 @@ class LoginControllerTest extends TestCase
         return $randomString;
     }
 
-    public static function getRandomEmail()
+    public function getRandomEmail()
     {
         $n = 10;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -46,7 +45,7 @@ class LoginControllerTest extends TestCase
     public function testCheckAccExistFunction()
     {
         $_POST['username'] = 'qdoan21';
-        $_POST['email']  = '123@gmail.com';
+        $_POST['email']  = 'qdoan21@gmail.com';
         $checkAccExist = MySqlConnect::connect()
             ->table('users')
             ->where([
@@ -62,13 +61,14 @@ class LoginControllerTest extends TestCase
 
     public function testCreateAccountFunction()
     {
-        $randomString = LoginControllerTest::getRandomString();
-        $randomEmail = LoginControllerTest::getRandomEmail();
+        new LoginControllerTest;
+        $oRandomString = $this->getRandomString;
+        $oRandomEmail = $this->getRandomEmail;
         
-        $_POST['username'] = $randomString;
-        $_POST['email']    = $randomEmail;
-        $_POST['address']   = $randomString;
-        $_POST['password']  = $randomString;
+        $_POST['username'] = $oRandomString;
+        $_POST['email']    = $oRandomEmail;
+        $_POST['address']   = $oRandomString;
+        $_POST['password']  = $oRandomString;
         
         $createAcc = MySqlConnect::connect()
             ->table('users')
@@ -76,7 +76,7 @@ class LoginControllerTest extends TestCase
                 'username' => $_POST['username'],
                 'email'    => $_POST['email'],
                 'address'   => $_POST['address'],
-                'password'  => $_POST['password']
+                'password'  => md5($_POST['password'])
             ])
             ->insert();
         $this->assertTrue($createAcc);
@@ -89,7 +89,7 @@ class LoginControllerTest extends TestCase
             ->table('users')
             ->where([
                 'username' => $_POST['username'],
-                'password'  => $_POST['password']
+                'password'  => md5($_POST['password'])
             ])
             ->select();
         $this->assertNotEmpty($aResult);

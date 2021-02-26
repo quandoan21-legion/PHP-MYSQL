@@ -66,7 +66,6 @@ class LoginController
 
     public function handlePost()
     {
-        PostModel::createPost($_POST['postTitle'], $_POST['postContent'], ($_FILES['my_file']['name']), $_POST['id']);
-        
+        PostModel::createPost($_POST['postTitle'], $_POST['postContent'], ($_FILES['my_file']['name']), $_POST['id']);        
     }
 }
