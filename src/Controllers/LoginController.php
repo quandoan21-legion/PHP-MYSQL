@@ -43,7 +43,7 @@ class LoginController
     public static function handleLogin()
     {
         
-        if (UserModel::handleLogin($_POST['usernameOrEmail'], $_POST['password'])) {
+        if (UserModel::handleLogin($_POST['usernameOrEmail'], $_POST['password']) > 0) {
             $_SESSION["usernameOrEmail"] = $_POST['usernameOrEmail'];
             loadView("Login/welcome.php");
         } else {
@@ -54,7 +54,7 @@ class LoginController
 
     public function handleRegister()
     {
-        if (UserModel::isUserExist($_POST['username']) || UserModel::isUserExist($_POST['email'])) {
+        if (UserModel::isUserExist($_POST['username']) || UserModel::isUserExist($_POST['email']) > 0) {
             loadView("Login/register.php");
         } else {
             UserModel::createUserAccount($_POST['username'], $_POST['email'], $_POST['address'], $_POST['password']);

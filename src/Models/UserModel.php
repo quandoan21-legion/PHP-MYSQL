@@ -1,4 +1,5 @@
 <?php
+
 namespace Basic\Models;
 
 use Basic\Database\MySqlConnect as MySqlConnect;
@@ -15,7 +16,7 @@ class UserModel
                 'email'    => $_POST['email']
             ], "OR")
             ->select();
-        return count($checkAccExist) > 0;
+        return count($checkAccExist);
     }
 
     public static function handleLogin($usernameOrEmail, $password)
@@ -31,8 +32,9 @@ class UserModel
                 'password' => md5($password)
             ])
             ->select();
-            $_SESSION['id'] = $handleLogin[0][0];
-        return count($handleLogin) > 0;
+
+        $_SESSION['id'] = $handleLogin[0][0];
+        return count($handleLogin);
     }
 
     public static function createUserAccount($username, $email, $address, $password)
@@ -46,6 +48,5 @@ class UserModel
                 'password' => md5($password)
             ])
             ->insert();
-        
     }
 }

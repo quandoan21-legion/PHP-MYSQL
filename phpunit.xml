@@ -4,6 +4,7 @@
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
+    stopOnFailure="true"
     bootstrap="tests/bootstrap.php"
 >
     <testsuites>
@@ -11,9 +12,4 @@
             <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
-    <!-- <filter>
-        <whitelist processUncoveredFiles="true">
-            <file>boostrap.php</file>
-        </whitelist>
-    </filter> -->
 </phpunit>

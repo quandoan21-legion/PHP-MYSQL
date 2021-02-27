@@ -1,9 +1,9 @@
 <?php
 
-namespace BasicTest\Controllers;
+namespace BasicTest\Models;
 
 use PHPUnit\Framework\TestCase;
-use Basic\Database\MySqlConnect;
+use Basic\Models\UserModel as UserModel;
 
 class LoginControllerTest extends TestCase
 {
@@ -38,61 +38,41 @@ class LoginControllerTest extends TestCase
             $randomEmail2 .= $characters[$index];
         }
 
-        $randomEmail = $randomEmail1.'@'. $randomEmail2.'.com';
+        $randomEmail = $randomEmail1 . '@' . $randomEmail2 . '.com';
         return $randomEmail;
     }
 
-    public function testCheckAccExistFunction()
+    public function testIsUserExist()
     {
         $_POST['username'] = 'qdoan21';
         $_POST['email']  = 'qdoan21@gmail.com';
-        $checkAccExist = MySqlConnect::connect()
-            ->table('users')
-            ->where([
-                'username' => $_POST['username'],
-                'email'    => $_POST['email']
-            ], "OR")
-            ->select();
-        if (count($checkAccExist) == 1) {
+        $checkAccExist = UserModel::isUserExist($_POST['username'], $_POST['email']);
+        if ($checkAccExist) {
             $this->assertNotEmpty($checkAccExist);
-            $this->assertIsArray($checkAccExist);
+            $this->assertGreaterThan(0, $checkAccExist);
         }
     }
+    
 
-    public function testCreateAccountFunction()
+    public function testCreateUserAccount()
     {
         new LoginControllerTest;
-        $oRandomString = $this->getRandomString;
-        $oRandomEmail = $this->getRandomEmail;
-        
+        $oRandomString = $this->getRandomString();
+        $oRandomEmail = $this->getRandomEmail();
+
         $_POST['username'] = $oRandomString;
         $_POST['email']    = $oRandomEmail;
         $_POST['address']   = $oRandomString;
-        $_POST['password']  = $oRandomString;
-        
-        $createAcc = MySqlConnect::connect()
-            ->table('users')
-            ->values([
-                'username' => $_POST['username'],
-                'email'    => $_POST['email'],
-                'address'   => $_POST['address'],
-                'password'  => md5($_POST['password'])
-            ])
-            ->insert();
-        $this->assertTrue($createAcc);
+        $_POST['password']  = md5($oRandomString);
+        UserModel::createUserAccount($_POST['username'], $_POST['email'], $_POST['address'], $_POST['password']);
+        $this->assertGreaterThan(0, UserModel::isUserExist($_POST['username'] || $_POST['email']));
     }
-    public function testLoginFunction()
+    public function testHandleLogin()
     {
         $_POST['username'] = 'qdoan21';
         $_POST['password']  = '123';
-        $aResult = MySqlConnect::connect()
-            ->table('users')
-            ->where([
-                'username' => $_POST['username'],
-                'password'  => md5($_POST['password'])
-            ])
-            ->select();
+        $aResult = UserModel::handleLogin($_POST['username'], $_POST['password']);
         $this->assertNotEmpty($aResult);
-        $this->assertIsArray($aResult);
+        $this->assertGreaterThan(0, UserModel::handleLogin($_POST['username'], $_POST['password']));
     }
 }
