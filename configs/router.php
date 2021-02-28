@@ -1,17 +1,16 @@
 <?php
 return [
     "GET" => [
-        "login"    => "LoginController@login",
-        "register" => "LoginController@register",
-        "getPost" => "LoginController@getPost",
-        "createPost" => "LoginController@createPost",
-        "showPost" => "LoginController@showPost",
-        "logout" => "LoginController@logout"
+        "login"    => "UserController@login",
+        "register" => "UserController@register",
+        "createPost" => "PostController@createPost",
+        "showPost" => "PostController@showPost",
+        "logout" => "UserController@logout"
     ],
 
     "POST" => [
-        "handleLogin"    => "LoginController@handleLogin",
-        "handlePost"     => "LoginController@handlePost",
-        "handleRegister" => "LoginController@handleRegister"
+        "handleLogin"    => "UserController@handleLogin",
+        "handlePost"     => "PostController@handlePost",
+        "handleRegister" => "UserController@handleRegister"
     ]
 ];

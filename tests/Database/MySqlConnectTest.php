@@ -4,7 +4,7 @@ namespace BasicTest\Database;
 
 use PHPUnit\Framework\TestCase;
 use Basic\Database\MySqlConnect;
-use Basic\Controllers\LoginController;
+use Basic\Controllers\UserController;
 
 class MySqlConnectTest extends TestCase
 {

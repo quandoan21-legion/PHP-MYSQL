@@ -3,7 +3,7 @@
 namespace Basic\Models;
 
 use Basic\Database\MySqlConnect as MySqlConnect;
-use Basic\Controllers\LoginController as LoginController;
+use Basic\Controllers\PostController as PostController;
 
 class PostModel
 {
@@ -37,7 +37,7 @@ class PostModel
                 'author_id'    => $author_id,
             ])
             ->insert();
-        LoginController::showPost();
+        PostController::showPost();
     }
     
     public static function getPost()

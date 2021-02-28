@@ -5,7 +5,7 @@ namespace BasicTest\Models;
 use PHPUnit\Framework\TestCase;
 use Basic\Models\UserModel as UserModel;
 
-class LoginControllerTest extends TestCase
+class UserControllerTest extends TestCase
 {
     public function getRandomString()
     {
@@ -52,11 +52,10 @@ class LoginControllerTest extends TestCase
             $this->assertGreaterThan(0, $checkAccExist);
         }
     }
-    
+
 
     public function testCreateUserAccount()
     {
-        new LoginControllerTest;
         $oRandomString = $this->getRandomString();
         $oRandomEmail = $this->getRandomEmail();
 
@@ -65,7 +64,7 @@ class LoginControllerTest extends TestCase
         $_POST['address']   = $oRandomString;
         $_POST['password']  = md5($oRandomString);
         UserModel::createUserAccount($_POST['username'], $_POST['email'], $_POST['address'], $_POST['password']);
-        $this->assertGreaterThan(0, UserModel::isUserExist($_POST['username'] || $_POST['email']));
+        $this->assertGreaterThan(0, UserModel::isUserExist($_POST['username']));
     }
     public function testHandleLogin()
     {
@@ -73,6 +72,6 @@ class LoginControllerTest extends TestCase
         $_POST['password']  = '123';
         $aResult = UserModel::handleLogin($_POST['username'], $_POST['password']);
         $this->assertNotEmpty($aResult);
-        $this->assertGreaterThan(0, UserModel::handleLogin($_POST['username'], $_POST['password']));
+        $this->assertGreaterThan(0, $aResult);
     }
 }

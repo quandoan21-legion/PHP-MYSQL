@@ -7,7 +7,7 @@ session_start();
 use Basic\Models\UserModel as UserModel;
 use Basic\Models\PostModel as PostModel;
 
-class LoginController
+class UserController
 {
     public function login()
     {
@@ -29,20 +29,9 @@ class LoginController
         loadview("Login/login.php");
     }
 
-    public function createPost()
-    {
-        loadview("Login/createPost.php");
-    }
-
-    public static function showPost()
-    {
-        PostModel::getPost();
-        loadView("Login/showPost.php");
-    }
 
     public static function handleLogin()
     {
-        
         if (UserModel::handleLogin($_POST['usernameOrEmail'], $_POST['password']) > 0) {
             $_SESSION["usernameOrEmail"] = $_POST['usernameOrEmail'];
             loadView("Login/welcome.php");
@@ -54,7 +43,7 @@ class LoginController
 
     public function handleRegister()
     {
-        if (UserModel::isUserExist($_POST['username']) || UserModel::isUserExist($_POST['email']) > 0) {
+        if (UserModel::isUserExist($_POST['email']) > 0) {
             loadView("Login/register.php");
         } else {
             UserModel::createUserAccount($_POST['username'], $_POST['email'], $_POST['address'], $_POST['password']);
