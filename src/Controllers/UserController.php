@@ -25,6 +25,7 @@ class UserController
 
     public function logout()
     {
+        session_unset();
         session_destroy();
         loadview("Login/login.php");
     }
@@ -32,7 +33,8 @@ class UserController
 
     public static function handleLogin()
     {
-        if (UserModel::handleLogin($_POST['usernameOrEmail'], $_POST['password']) > 0) {
+        if (count(UserModel::handleLogin($_POST['usernameOrEmail'], $_POST['password'])) > 0 !== false) {
+            $result = UserModel::handleLogin($_POST['usernameOrEmail'], $_POST['password']);
             $_SESSION["usernameOrEmail"] = $_POST['usernameOrEmail'];
             loadView("Login/welcome.php");
         } else {
@@ -55,6 +57,6 @@ class UserController
 
     public function handlePost()
     {
-        PostModel::createPost($_POST['postTitle'], $_POST['postContent'], ($_FILES['my_file']['name']), $_POST['id']);        
+        PostModel::createPost($_POST['postTitle'], $_POST['postContent'], ($_FILES['my_file']['name']), $_POST['id']);
     }
 }

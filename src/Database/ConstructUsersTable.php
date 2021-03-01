@@ -20,6 +20,6 @@ class ConstructUsersTable
     }
     public static function createDummyAccount()
     {
-        UserModel::createUserAccount('qdoan21', 'qdoan21@gmail.com', 'Tan Mai, Hoang Mai', '123');
+        UserModel::createUserAccount('wiloke', 'wiloke@gmail.com', 'Linh Dam, Hoang Mai', '123');
     }
 }

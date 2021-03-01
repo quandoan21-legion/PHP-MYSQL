@@ -31,9 +31,10 @@ class UserModel
                 'password' => md5($password)
             ])
             ->select();
+            
         if (count($handleLogin) > 0) {
             $_SESSION['id'] = $handleLogin[0][0];
-            return count($handleLogin);
+            return $handleLogin;
         }else {
             return count($handleLogin);
         }

@@ -1,7 +1,6 @@
 <?php 
 namespace Basic\Controllers;
 
-use Basic\Database\MySqlConnect as MySqlConnect;
 use Basic\Models\PostModel as PostModel;
 
 class PostController
@@ -13,12 +12,13 @@ class PostController
 
     public static function showPost()
     {
-        PostModel::getPost();
+        $aPosts = PostModel::getPost();
+        $_SESSION["posts"] = $aPosts;      
         loadView("Login/showPost.php");
     }
 
     public function handlePost()
     {
-        PostModel::createPost($_POST['postTitle'], $_POST['postContent'], ($_FILES['my_file']['name']), $_POST['id']);
+        PostModel::createPost($_POST['postTitle'], $_POST['postContent'], $_FILES['my_file'], $_POST['id']);
     }
 }

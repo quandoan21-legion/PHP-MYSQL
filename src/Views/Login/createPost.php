@@ -19,7 +19,7 @@ include "src/Views/navigation.php";
         </div>
         <div class="field">
             <label>Image</label>
-            <input type="file" name="my_file" placeholder="Image">
+            <input type="file" name="my_file" id="my_file" placeholder="Image">
         </div>
         <button class="ui button" type="submit">Add</button></button>
     </form>
