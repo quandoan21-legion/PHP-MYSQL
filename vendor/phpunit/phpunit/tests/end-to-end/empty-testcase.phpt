@@ -10,7 +10,7 @@ require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 ?>
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 W                                                                   1 / 1 (100%)
 

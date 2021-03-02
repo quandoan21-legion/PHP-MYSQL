@@ -18,7 +18,7 @@ PHPUnit\TextUI\Command::main();
 
 unlink($tmpResultCache);
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 Test 'MultiDependencyTest::testFive' started
 Test 'MultiDependencyTest::testFive' ended

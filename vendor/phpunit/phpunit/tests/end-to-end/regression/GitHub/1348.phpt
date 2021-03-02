@@ -16,7 +16,7 @@ $_SERVER['argv'][]  = __DIR__ . '/1348/Issue1348Test.php';
 require __DIR__ . '/../../../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 .
 STDOUT does not break test result

@@ -18,7 +18,7 @@ print file_get_contents($target);
 
 unlink($target);
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 .SS..                                                               5 / 5 (100%)
 

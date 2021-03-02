@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '161d0c1064dc6e29824f7a2ba31f3475916d6da3',
+    'reference' => 'f58ae3b4faf11bd412226aa89b543c890ca196f8',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '161d0c1064dc6e29824f7a2ba31f3475916d6da3',
+      'reference' => 'f58ae3b4faf11bd412226aa89b543c890ca196f8',
     ),
     'amphp/amp' => 
     array (

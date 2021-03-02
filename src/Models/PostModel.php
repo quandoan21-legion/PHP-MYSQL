@@ -6,6 +6,7 @@ use Basic\Database\MySqlConnect as MySqlConnect;
 
 class PostModel
 {
+    public $geeks = "test attribute"; 
     public static function createPost($postTitle, $postContent, $img, $author_id)
     {
         if (($_FILES['my_file']['name'] != "")) {

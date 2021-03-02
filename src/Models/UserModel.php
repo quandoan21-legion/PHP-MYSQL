@@ -1,5 +1,6 @@
 <?php
 namespace Basic\Models;
+session_start();
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 
@@ -31,13 +32,7 @@ class UserModel
                 'password' => md5($password)
             ])
             ->select();
-            
-        if (count($handleLogin) > 0) {
-            $_SESSION['id'] = $handleLogin[0][0];
-            return $handleLogin;
-        }else {
-            return count($handleLogin);
-        }
+        return $handleLogin;
     }
 
     public static function createUserAccount($username, $email, $address, $password)

@@ -22,5 +22,4 @@ $aNavRoute = array_keys($aNavVal);
             </a>
         </div>
     <?php endforeach ?>
-    <?php var_export(isset($_SESSION['id'])); ?>
 </div>

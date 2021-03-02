@@ -38,14 +38,8 @@
 <script src="../../assets/js/jquery.min.js"></script>
 <script>
     jQuery('#submit').on('click', function(event) {
-
         event.preventDefault();
-        console.log(jQuery('#formLogin').serializeArray());
-        jQuery.ajax({
-            type: 'POST',
-            url: 'login.php',
-            data: jQuery('#formLogin').serializeArray()
-        })
+        jQuery.ajax
     })
 </script>
 

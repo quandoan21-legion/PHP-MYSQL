@@ -1,8 +1,6 @@
 <?php
 
 namespace Basic\Database;
-
-use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use Basic\Core\App as App;
 use Basic\Database\ConstructPostsTable as ConstructPostsTable;
 use Basic\Database\ConstructUsersTable as ConstructUsersTable;
@@ -129,7 +127,7 @@ class MySqlConnect
                 $sql .= " OR $this->orWhere";
             }
         }
-        $result = mysqli_fetch_all(self::$oDb->query($sql));
+        $result = mysqli_fetch_all(self::$oDb->query($sql), MYSQLI_ASSOC);
         return $result;
     }
 
@@ -159,8 +157,6 @@ class MySqlConnect
         if (isset($this->orWhere)) {
             $sql .= " OR $this->orWhere";
         }
-        echo $sql;
-        die;
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }

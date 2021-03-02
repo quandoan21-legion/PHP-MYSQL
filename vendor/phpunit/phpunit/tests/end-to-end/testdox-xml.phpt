@@ -11,7 +11,7 @@ $_SERVER['argv'][5] = __DIR__ . '/../_files/StatusTest.php';
 require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 .FEISRW                                                             7 / 7 (100%)<?xml version="1.0" encoding="UTF-8"?>
 <tests>

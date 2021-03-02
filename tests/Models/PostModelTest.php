@@ -20,7 +20,7 @@ class PostModelTest extends TestCase
                 'error'    => 0,
                 'size'     => 11506,
             ),
-            'author_id'    => '90',
+            'author_id'    => '10',
         ];
         PostModel::createPost(
             $aPostData['post_title'],
@@ -38,15 +38,30 @@ class PostModelTest extends TestCase
                 $aPostData['author_id'],
             ])
             ->select();
-        $this->assertNotEmpty($result);
+        foreach ($result as $value) {
+            $this->assertNotEmpty($value);
+            $this->assertIsArray($value);
+            $this->assertArrayHasKey('id', $value);
+            $this->assertArrayHasKey('post_title', $value);
+            $this->assertArrayHasKey('post_content', $value);
+            $this->assertArrayHasKey('img', $value);
+            $this->assertArrayHasKey('author_id', $value);
+        }
         $this->assertGreaterThan(0, count($result));
     }
 
     public function testGetPost()
     {
         $result = PostModel::getPost();
-        $this->assertNotEmpty($result);
+        foreach ($result as $value) {
+            $this->assertNotEmpty($value);
+            $this->assertIsArray($value);
+            $this->assertArrayHasKey('id', $value);
+            $this->assertArrayHasKey('post_title', $value);
+            $this->assertArrayHasKey('post_content', $value);
+            $this->assertArrayHasKey('img', $value);
+            $this->assertArrayHasKey('author_id', $value);
+        }
         $this->assertGreaterThan(0, count($result));
-
     }
 }

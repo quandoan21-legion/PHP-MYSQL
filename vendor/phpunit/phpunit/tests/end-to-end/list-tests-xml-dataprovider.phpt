@@ -17,7 +17,7 @@ print file_get_contents($target);
 
 unlink($target);
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 Wrote list of tests that would have been run to %s
 <?xml version="1.0"?>

@@ -3,7 +3,7 @@
 namespace BasicTest\Models;
 
 use PHPUnit\Framework\TestCase;
-use Basic\Models\UserModel as UserModel;
+use Basic\Models\UserModel;
 
 class UserControllerTest extends TestCase
 {
@@ -44,34 +44,32 @@ class UserControllerTest extends TestCase
 
     public function testIsUserExist()
     {
-        $_POST['username'] = 'qdoan21';
-        $_POST['email']  = 'qdoan21@gmail.com';
-        $checkAccExist = UserModel::isUserExist($_POST['username'], $_POST['email']);
-        if ($checkAccExist) {
-            $this->assertNotEmpty($checkAccExist);
-            $this->assertGreaterThan(0, $checkAccExist);
-        }
+        $email         = 'qdoan21@gmail.com';
+        $checkAccExist = UserModel::isUserExist($email);
+        $this->assertNotEmpty($checkAccExist);
+        $this->assertGreaterThan(0, $checkAccExist);
     }
 
 
     public function testCreateUserAccount()
     {
         $oRandomString = $this->getRandomString();
-        $oRandomEmail = $this->getRandomEmail();
+        $oRandomEmail  = $this->getRandomEmail();
 
-        $_POST['username'] = $oRandomString;
-        $_POST['email']    = $oRandomEmail;
-        $_POST['address']   = $oRandomString;
-        $_POST['password']  = md5($oRandomString);
-        UserModel::createUserAccount($_POST['username'], $_POST['email'], $_POST['address'], $_POST['password']);
-        $this->assertGreaterThan(0, UserModel::isUserExist($_POST['username']));
+        $username = $oRandomString;
+        $email    = $oRandomEmail;
+        $address  = $oRandomString;
+        $password = $oRandomString;
+        UserModel::createUserAccount($username, $email, $address, $password);
+        $this->assertGreaterThan(0, UserModel::isUserExist($email));
+        $this->assertIsInt(UserModel::isUserExist($email));
     }
     public function testHandleLogin()
     {
-        $_POST['username'] = 'qdoan21';
-        $_POST['password']  = '123';
-        $aResult = UserModel::handleLogin($_POST['username'], $_POST['password']);
+        $username = 'qdoan21';
+        $password = '123';
+        $aResult  = UserModel::handleLogin($username, $password);
         $this->assertNotEmpty($aResult);
-        $this->assertGreaterThan(0, $aResult);
+        $this->assertGreaterThan(0, count($aResult));
     }
 }

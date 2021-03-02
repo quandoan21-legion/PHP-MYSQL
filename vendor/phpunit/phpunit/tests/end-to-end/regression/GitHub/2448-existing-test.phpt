@@ -12,7 +12,7 @@ PHPUnit\TextUI\Command::main(false);
 
 @unlink(__DIR__ . '/2448/.phpunit.result.cache');
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and contributors.
+PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
 
 .                                                                   1 / 1 (100%)
 
