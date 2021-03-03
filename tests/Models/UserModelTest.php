@@ -45,7 +45,7 @@ class UserControllerTest extends TestCase
     public function testIsUserExist()
     {
         $email         = 'qdoan21@gmail.com';
-        $checkAccExist = UserModel::isUserExist($email);
+        $checkAccExist = UserModel::isUserExists($email);
         $this->assertNotEmpty($checkAccExist);
         $this->assertIsBool($checkAccExist);
         $this->assertGreaterThan(0, $checkAccExist);
@@ -62,8 +62,8 @@ class UserControllerTest extends TestCase
         $address  = $oRandomString;
         $password = $oRandomString;
         UserModel::createUserAccount($username, $email, $address, $password);
-        $this->assertGreaterThan(0, UserModel::isUserExist($email));
-        $this->assertIsBool(UserModel::isUserExist($email));
+        $this->assertGreaterThan(0, UserModel::isUserExists($email));
+        $this->assertIsBool(UserModel::isUserExists($email));
     }
     public function testHandleLogin()
     {
