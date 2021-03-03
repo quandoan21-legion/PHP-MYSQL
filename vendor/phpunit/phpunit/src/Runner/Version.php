@@ -50,7 +50,7 @@ class Version
 
     public static function getVersionString(): string
     {
-        return 'PHPUnit ' . self::id() . ' by Sebastian Bergmann and a bit from Quân Đoàn.';
+        return 'PHPUnit ' . self::id() . ' by Sebastian Bergmann and contributors.';
     }
 
     public static function getReleaseChannel(): string

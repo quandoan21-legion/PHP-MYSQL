@@ -14,6 +14,6 @@ PHPUnit\TextUI\Command::main();
 
 unlink($tmpResultCache);
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 unrecognized --order-by option: foobar

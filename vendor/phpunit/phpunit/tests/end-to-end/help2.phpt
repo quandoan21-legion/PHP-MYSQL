@@ -8,7 +8,7 @@ $_SERVER['argv'][2] = '--help';
 require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 Usage: phpunit [options] UnitTest [UnitTest.php]
        phpunit [options] <directory>

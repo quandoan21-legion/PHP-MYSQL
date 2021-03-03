@@ -1,8 +1,5 @@
 <?php
-
 namespace Basic\Controllers;
-
-// session_start();
 
 use Basic\Models\UserModel as UserModel;
 use Basic\Models\PostModel as PostModel;
@@ -39,10 +36,8 @@ class UserController
           $usernameOrEmail = $_POST['usernameOrEmail'];
           $password        = $_POST['password'];
           $result = UserModel::handleLogin($usernameOrEmail, $password);
-          if ((count($result) > 0) !== false) {
-               $result = UserModel::handleLogin($usernameOrEmail, $password);
+          if (count($result) > 0) {
                $_SESSION['id'] = $result[0]['id'];
-               // var_export(isset($_SESSION['id']));die;
                $_SESSION["usernameOrEmail"] = $usernameOrEmail;
                loadView("Login/welcome.php");
           } else {
@@ -58,7 +53,7 @@ class UserController
           $email    = $_POST['email'];
           $address  = $_POST['address'];
           $password = $_POST['password'];
-          if (UserModel::isUserExist($email) > 0) {
+          if (UserModel::isUserExist($email) !== false) {
                $_SESSION["errors"] = array("Your username or email has been used.");
                loadView("Login/register.php");
           } else {

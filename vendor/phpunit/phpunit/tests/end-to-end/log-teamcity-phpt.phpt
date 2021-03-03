@@ -10,7 +10,7 @@ $_SERVER['argv'][4] = \realpath(__DIR__ . '/../end-to-end/phpt-stderr.phpt');
 require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 
 ##teamcity[testCount count='1' flowId='%d']

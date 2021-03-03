@@ -9,7 +9,7 @@ $_SERVER['argv'][3] = __DIR__.'/../_files/configuration.defaulttestsuite.xml';
 require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 DummyBar
  ✔ Bar equals bar

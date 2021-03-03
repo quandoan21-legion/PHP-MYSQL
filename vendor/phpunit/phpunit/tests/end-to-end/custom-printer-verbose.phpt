@@ -11,7 +11,7 @@ $_SERVER['argv'][5] = __DIR__ . '/../_files/IncompleteTest.php';
 require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 Runtime:       %s
 Configuration: %sconfiguration.custom-printer.xml

@@ -15,7 +15,7 @@ MyCommand::main();
 ?>
 --EXPECTF--
 MyCommand::myHandler 123
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 ...                                                                 3 / 3 (100%)
 

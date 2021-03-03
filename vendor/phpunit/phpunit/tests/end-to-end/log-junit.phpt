@@ -12,7 +12,7 @@ require __DIR__ . '/../bootstrap.php';
 PHPUnit\TextUI\Command::main();
 ?>
 --EXPECTF--
-PHPUnit %s by Sebastian Bergmann and a bit from Quân Đoàn.
+PHPUnit %s by Sebastian Bergmann and contributors.
 
 .FEISRW                                                             7 / 7 (100%)<?xml version="1.0" encoding="UTF-8"?>
 <testsuites>

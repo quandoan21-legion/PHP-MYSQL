@@ -7,7 +7,7 @@ use Basic\Database\MySqlConnect as MySqlConnect;
 
 class UserModel
 {
-    public static function isUserExist($usernameOrEmail)
+    public static function isUserExists($usernameOrEmail)
     {
         $checkAccExist = MySqlConnect::connect()
             ->table('users')
@@ -16,7 +16,7 @@ class UserModel
                 'email'    => $usernameOrEmail
             ], "OR")
             ->select();
-        return count($checkAccExist);
+        return count($checkAccExist) > 0;
     }
 
     public static function handleLogin($usernameOrEmail, $password)
