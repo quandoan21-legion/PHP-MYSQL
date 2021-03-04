@@ -53,7 +53,7 @@ class UserController
           $email    = $_POST['email'];
           $address  = $_POST['address'];
           $password = $_POST['password'];
-          if (UserModel::isUserExist($email) !== false) {
+          if (UserModel::isUserExists($email) !== false) {
                $_SESSION["errors"] = array("Your username or email has been used.");
                loadView("Login/register.php");
           } else {

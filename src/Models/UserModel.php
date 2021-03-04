@@ -7,32 +7,37 @@ use Basic\Database\MySqlConnect as MySqlConnect;
 
 class UserModel
 {
+    private static $aHandleLogin;
     public static function isUserExists($usernameOrEmail)
     {
-        $checkAccExist = MySqlConnect::connect()
+        return count( MySqlConnect::connect()
             ->table('users')
             ->where([
                 'username' => $usernameOrEmail,
                 'email'    => $usernameOrEmail
             ], "OR")
-            ->select();
-        return count($checkAccExist) > 0;
+            ->select()
+        ) > 0;
     }
 
     public static function handleLogin($usernameOrEmail, $password)
     {
-        $handleLogin = MySqlConnect::connect()
-            ->table('users')
-            ->where([
-                'username' => $usernameOrEmail,
-                'password' => md5($password)
-            ])
-            ->orWhere([
-                'email'    => $usernameOrEmail,
-                'password' => md5($password)
-            ])
-            ->select();
-        return $handleLogin;
+        if (self::$aHandleLogin === null) {
+            self::$aHandleLogin = MySqlConnect::connect()
+                ->table('users')
+                ->where([
+                    'username' => $usernameOrEmail,
+                    'password' => md5($password)
+                ])
+                ->orWhere([
+                    'email'    => $usernameOrEmail,
+                    'password' => md5($password)
+                ])
+                ->select();
+            return self::$aHandleLogin;
+        }else {
+            return self::$aHandleLogin;
+        }
     }
 
     public static function createUserAccount($username, $email, $address, $password)
