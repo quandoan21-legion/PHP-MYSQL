@@ -1,6 +1,5 @@
 <?php
 namespace Basic\Models;
-session_start();
 
 use Basic\Database\MySqlConnect as MySqlConnect;
 

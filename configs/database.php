@@ -2,6 +2,6 @@
 return [
     'host'     => 'localhost',
     'username' => 'root',
-    'password' => '',
+    'password' => 'Apestogether.Strong21',
     'db'       => 'basic_php'
 ];

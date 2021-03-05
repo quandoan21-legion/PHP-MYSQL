@@ -3,7 +3,7 @@ include "src/Views/header.php";
 include "src/Views/navigation.php";
 ?>
 <div class="ui text container">
-    <?php;
+    <?php
     include "src/Views/messages.php";
     ?>
     <h1>CREATE POST</h1>

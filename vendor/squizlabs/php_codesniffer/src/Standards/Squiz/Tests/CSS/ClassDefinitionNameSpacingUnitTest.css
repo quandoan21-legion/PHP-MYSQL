@@ -38,7 +38,7 @@
 td.TableWidgetType-header.TableWidgetType-header-lastLogin,
 td.TableWidgetType-header.TableWidgetType-header-remove,
 td.TableWidgetType-header.TableWidgetType-header-email,
-td.TableWidgetType-header.TableWidgetType-header-username {
+td.TableWidgetType-header.TableWidgetType-header-userName {
     background: url(images/ScreenImages/table_header_bg.png) repeat-x;
     border-top: 1px solid #D4D4D4;
     color: #787878;

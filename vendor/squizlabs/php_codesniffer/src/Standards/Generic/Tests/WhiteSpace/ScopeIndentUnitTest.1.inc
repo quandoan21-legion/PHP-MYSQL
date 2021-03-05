@@ -454,13 +454,15 @@ class AnonymousFn
 ?>
 
 <div>
-    <?php   if ($myvar == 'test') {
+    <?php
+    if ($myvar == 'test') {
         echo 'something';
     }
     ?>
 <div>
 <div>
-    <?php       if ($myvar == 'test') {
+    <?php
+        if ($myvar == 'test') {
             echo 'something';
         }
     ?>
@@ -473,7 +475,8 @@ if ($myvar == 'test') {
     ?>
 <div>
 <body>
-    <?php   if (isset($_GET["test"])) {
+    <?php
+    if (isset($_GET["test"])) {
         if ($_GET["test"] <> "") {
             $test = true;
         } else {
@@ -489,7 +492,8 @@ if (true) {
     <div>
         <div>
             <div>
-            <?php               if (true) {
+            <?php
+                if (true) {
                     echo 'hello';
                 } else {
                     echo 'goodbye';
@@ -530,22 +534,26 @@ if ($foo) {
             <div>
                 <div>
                     <div>
-            <?php           if ($baz > 1) {
+            <?php
+            if ($baz > 1) {
                 echo '1';
             }
             ?>
                     </div>
-                    <?php               if ($baz > 1) {
+                    <?php
+                if ($baz > 1) {
                     echo '1';
                 }
                     ?>
                 </div>
-                <?php               if ($baz > 1) {
+                <?php
+                if ($baz > 1) {
                     echo '1';
                 }
                 ?>
             </div>
-            <?php       }
+            <?php
+        }
     }
 }
 
@@ -1091,7 +1099,8 @@ $foo = foo(
 if (somethingIsTrue()) {
     ?>
     <div>
-        <?php       $someVar = doSomething(
+        <?php
+        $someVar = doSomething(
             'foobar',
             true,
             'foo',
@@ -1136,7 +1145,8 @@ echo 'foo';
 class Test {
 
     public function a() {
-        ?>a<?php   }
+        ?>a<?php
+    }
 
     public function b(
         $a
@@ -1271,14 +1281,16 @@ case 'b':
     $b = 3;
 ?>
     <input name="something" value="<?php echo $b; ?>">
-<?php   $b = 4;
+<?php
+    $b = 4;
     break;
 
 default:
     $b = 3;
     ?>
     <input name="something" value="<?php echo $b; ?>">
-    <?php   $b = 4;
+    <?php
+    $b = 4;
     break;
 }
 
@@ -1357,12 +1369,14 @@ if (true) {
 
         if (true) {
             ?>
-            <?php       }
+            <?php
+        }
 
         if (true
             || false) {
             ?>
-            <?php       }
+            <?php
+        }
 
         ?>
     </div>
@@ -1455,7 +1469,8 @@ echo $string?->append('foo')
          <span></span>
      <?php endif ?>
 
-<?php   if (true) {
+<?php
+    if (true) {
     }
     else if (true) {
     }

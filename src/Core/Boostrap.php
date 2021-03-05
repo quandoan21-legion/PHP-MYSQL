@@ -1,28 +1,22 @@
-<?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+<?php 
 require "vendor/autoload.php";
 use Basic\Core\Router as Router;
 use Basic\Core\Request as Request;
-use Basic\Core\App;
-use Basic\Database\MySqlConnect as MySqlConnect;
 
-App::set('configs/database', include "configs/database.php"); 
 $aRouter = include "configs/router.php";
-MySqlConnect::connect();
-function loadView($file)
-{
+
+function loadView($file){
   if (strpos($file, ".php") === false) {
     $file .= ".php";
   }
-  $file = "src/Views/" . $file;
+  $file = "src/Views/".$file;
   if (file_exists($file)) {
     include $file;
   }
-}
 
+}
 $route = Request::route();
-$method = Request::method();
+$method = $_SERVER['REQUEST_METHOD'];
 
 $oRouter = new Router();
 $oRouter->setRouter($aRouter)->direct($method, $route);

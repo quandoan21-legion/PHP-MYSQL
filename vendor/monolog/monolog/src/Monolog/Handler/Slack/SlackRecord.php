@@ -98,7 +98,7 @@ class SlackRecord
     ) {
         $this
             ->setChannel($channel)
-            ->setusername($username)
+            ->setUsername($username)
             ->useAttachment($useAttachment)
             ->setUserIcon($userIcon)
             ->useShortAttachment($useShortAttachment)
@@ -236,13 +236,13 @@ class SlackRecord
     }
 
     /**
-     * username used by the bot when posting
+     * Username used by the bot when posting
      *
      * @param ?string $username
      *
      * @return static
      */
-    public function setusername(?string $username = null): self
+    public function setUsername(?string $username = null): self
     {
         $this->username = $username;
 

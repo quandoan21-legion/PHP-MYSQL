@@ -74,15 +74,18 @@ switch ($blah) {
     </div>
 </body>
 
-<?php   if ($foo) {
+<?php
+    if ($foo) {
         ?>
         <?php         } ?>
 
-<?php   if ($foo) {
+<?php
+    if ($foo) {
         ?>
     <?php         } ?>
 
-<?php   if ($foo) {
+<?php
+    if ($foo) {
         ?>
     <?php } ?>
 

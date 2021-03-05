@@ -380,7 +380,8 @@ function foo() {
     ?>
 
     <div>
-        <?php       $foo = 'foo';
+        <?php
+        $foo = 'foo';
         $bar = 'bar';
         ?>
     </div>

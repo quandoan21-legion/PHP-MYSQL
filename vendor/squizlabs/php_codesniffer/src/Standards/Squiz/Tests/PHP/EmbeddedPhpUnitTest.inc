@@ -1,4 +1,5 @@
-<?php   // Not embedded. Do not check here.
+<?php
+    // Not embedded. Do not check here.
     echo 'hello';
 ?>
 <html>
@@ -7,10 +8,12 @@
 <script><?php echo $script; ?></script>
 </head>
 <body>
-    <?php       echo $body;
+    <?php
+        echo $body;
     ?>
     hello
-    <?php   echo $moreBody;
+    <?php
+    echo $moreBody;
     ?>
     <?php  echo 'hi'; ?>
     <?php  echo 'hi';   ?>
@@ -18,7 +21,8 @@
     <?php echo 'hi'; echo 'hi;'; ?>
     <?php  echo 'hi'; echo 'hi;';   ?>
 
-    <?php   ?>
+    <?php
+    ?>
     <?php ?>
 
     <?php
@@ -32,11 +36,13 @@
 
         ?>
 
-    <?php   echo $moreBody; ?>
+    <?php
+    echo $moreBody; ?>
     <?php echo $moreBody;
     ?>
 
-            <?php       echo 'hi';
+            <?php
+        echo 'hi';
             ?>
 
     <?php
@@ -56,7 +62,8 @@ function test()
             </tr>
             <?php }
             ?>
-        <?php       foreach ($bar as $bar) {
+        <?php
+        foreach ($bar as $bar) {
             echo $bar;
         }
     }
@@ -64,14 +71,16 @@ function test()
     foreach ($root->section as $section) {
         ?>
         <table>
-            <?php           if ($foo) {
+            <?php
+            if ($foo) {
             ?>
             <tr>
             </tr>
             <?php
 }
             ?>
-        <?php       foreach ($bar as $bar) {
+        <?php
+        foreach ($bar as $bar) {
             echo $bar;
         }
     }
@@ -88,7 +97,8 @@ function foo()
 
 ?>
 
-            <strong><?php           echo 'foo';
+            <strong><?php
+            echo 'foo';
             ?></strong>
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 namespace Basic\Core;
 
-
 class App
 {
     public static array $aRegistery = array();

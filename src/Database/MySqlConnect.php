@@ -4,6 +4,8 @@ namespace Basic\Database;
 use Basic\Core\App as App;
 use Basic\Database\ConstructPostsTable as ConstructPostsTable;
 use Basic\Database\ConstructUsersTable as ConstructUsersTable;
+
+$GLOBALS['aDb'] = include "configs/database.php";
 class MySqlConnect
 {
     protected $where;
@@ -14,9 +16,10 @@ class MySqlConnect
     public static $oDb;
     private static $self;
     public  ?string $connectErr = null;
-
+    
     public function __construct()
     {
+        App::set('configs/database', $GLOBALS['aDb']);
         if (!self::$oDb) {
             self::$oDb = new \mysqli(
                 App::get('configs/database')['host'],   
