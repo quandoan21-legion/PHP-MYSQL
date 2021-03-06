@@ -1,6 +1,7 @@
 <?php
 namespace Basic\Controllers;
 
+session_start();
 use Basic\Models\UserModel as UserModel;
 use Basic\Models\PostModel as PostModel;
 
@@ -25,7 +26,6 @@ class UserController
      public function logout()
      {
           session_unset();
-          session_destroy();
           loadview("Login/login.php");
      }
 
@@ -38,6 +38,7 @@ class UserController
           $result = UserModel::handleLogin($usernameOrEmail, $password);
           if (count($result) > 0) {
                $_SESSION['id'] = $result[0]['id'];
+               // var_dump($_SESSION['id']);die;
                $_SESSION["usernameOrEmail"] = $usernameOrEmail;
                loadView("Login/welcome.php");
           } else {
@@ -64,8 +65,4 @@ class UserController
           }
      }
 
-     public function handlePost()
-     {
-          PostModel::createPost($_POST['postTitle'], $_POST['postContent'], ($_FILES['my_file']['name']), $_POST['id']);
-     }
 }
