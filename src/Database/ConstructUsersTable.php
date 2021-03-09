@@ -22,13 +22,10 @@ class ConstructUsersTable
     }
     public static function createDummyAccount()
     {
-        $password = md5('123');
-        $sql = "INSERT INTO users 
-        (`username`, `email`, `password`, `address`)
-            SELECT * FROM (SELECT 'wiloke', 'wiloke@gmail.com', $password, 'Linh Dam, Hoang Mai') AS tmp
-            WHERE NOT EXISTS (
-                SELECT username FROM users WHERE `username` = 'wiloke'
-            ) LIMIT 1;";
-        MySqlConnect::$oDb->query($sql);
+        $username = 'wiloke';
+        $email = 'wiloke@gmail.com';
+        $address = 'Linh Dam, Hoang Mai';
+        $password = '123';
+        UserModel::createUserAccount($username, $email, $address, $password);
     }
 }
