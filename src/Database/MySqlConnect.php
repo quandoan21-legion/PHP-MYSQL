@@ -31,10 +31,10 @@ class MySqlConnect
                 echo "Failed to connect to MySQL: " . self::$oDb->connect_error;
                 die;
             }
+            ConstructPostsTable::createPostsTable();
+            ConstructUsersTable::createUsersTable();
+            ConstructUsersTable::createDummyAccount();
         }
-        ConstructPostsTable::createPostsTable();
-        ConstructUsersTable::createUsersTable();
-        ConstructUsersTable::createDummyAccount();
     }
     
     public static function connect()
@@ -137,7 +137,7 @@ class MySqlConnect
     public function insert()
     {
         $sql = "INSERT INTO $this->table ({$this->tableCol}) VALUES ({$this->aValues})";
-        echo $sql;die;  
+        // echo $sql;die;  
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }

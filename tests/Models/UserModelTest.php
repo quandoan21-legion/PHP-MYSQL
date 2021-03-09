@@ -46,7 +46,6 @@ class UserControllerTest extends TestCase
     {
         $email         = 'wiloke@gmail.com';
         $checkAccExist = UserModel::isUserExists($email);
-        // var_dump($checkAccExist);die;
         $this->assertNotEmpty($checkAccExist);
         $this->assertIsBool($checkAccExist);
         $this->assertGreaterThan(0, $checkAccExist);

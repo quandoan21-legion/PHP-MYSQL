@@ -5,6 +5,7 @@ use Basic\Models\PostModel as PostModel;
 
 class PostController
 {
+    
     public function createPost()
     {
         loadview("Login/createPost.php");
@@ -13,7 +14,7 @@ class PostController
     public static function showPost()
     {
         $aPosts = PostModel::getPost();
-        var_export($aPosts);die;
+        // var_export($aPosts);die;
         $_SESSION["posts"] = $aPosts;      
         loadView("Login/showPost.php");
     }

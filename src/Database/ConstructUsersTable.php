@@ -17,9 +17,18 @@ class ConstructUsersTable
             `address` varchar(50) 
             );";
         MySqlConnect::$oDb->query($sql);
+        self::createDummyAccount();
+        
     }
     public static function createDummyAccount()
     {
-        UserModel::createUserAccount('wiloke', 'wiloke@gmail.com', 'Linh Dam, Hoang Mai', '123');
+        $password = md5('123');
+        $sql = "INSERT INTO users 
+        (`username`, `email`, `password`, `address`)
+            SELECT * FROM (SELECT 'wiloke', 'wiloke@gmail.com', $password, 'Linh Dam, Hoang Mai') AS tmp
+            WHERE NOT EXISTS (
+                SELECT username FROM users WHERE `username` = 'wiloke'
+            ) LIMIT 1;";
+        MySqlConnect::$oDb->query($sql);
     }
 }
