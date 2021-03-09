@@ -1,25 +1,24 @@
-<?php 
+<?php
 session_start();
-$aUsers = json_decode(file_get_contents("users.json"), true);
+$aUsers = json_decode(file_get_contents('users.json'), true);
 
-$aFindedUser = array_filter($aUsers, function($aUsers){
-    if ($aUsers['username'] == $_POST['username'] && $aUsers['password'] == $_POST['password']) {
+$aFindedUser = array_filter($aUsers, function($aUser){
+    if ($aUser['username'] == $_POST['username'] && $aUser['password'] == $_POST['password']) {
         return true;
-    }else {
-        return false;
     }
+    return false;
 });
 
 if (!empty($aFindedUser)) {
-    $_SESSION = [
+   $_SESSION = [
         'status' => 'success',
-        'user' => $aFindedUser[0]['username'],
-    ];
-} else {
+        'user'   => $aUser['username'],
+   ];
+}else {
     $_SESSION = [
-        'status' => 'success',
-        'msg' => 'Invalid username or password',
+        'status' => 'error',
+        'msg'    => 'incorrect email or password',
     ];
 }
-header('Location: localhost:8888/RESTapi/ajax/index.php');
-exit;   
+header('location: http://localhost:8888/RESTapi/ajax/index.php');
+exit;
