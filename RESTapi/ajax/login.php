@@ -10,15 +10,11 @@ $aFindedUser = array_filter($aUsers, function($aUser){
 });
 
 if (!empty($aFindedUser)) {
-   $_SESSION = [
-        'status' => 'success',
-        'user'   => $aUser['username'],
-   ];
-}else {
-    $_SESSION = [
-        'status' => 'error',
-        'msg'    => 'incorrect email or password',
-    ];
+    $_SESSION['loggedin'] = $aFindedUser[0];
+    $aResponse = ['status' => 'success', 'user' => $aFindedUser[0]['username']];
+} else {
+    $aResponse = ['status' => 'error', 'msg' => 'Invalid username and password'];
 }
-header('location: http://localhost:8888/RESTapi/ajax/index.php');
-exit;
+echo json_encode($aResponse);
+// header('location: http://localhost:8888/RESTapi/ajax/index.php');
+// exit;
