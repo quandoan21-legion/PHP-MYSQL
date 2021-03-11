@@ -14,8 +14,7 @@ class Router
 
     public function direct($method, $route)
     {
-        if (isset($this->aRouter[$method][$route])) {
-            
+        if (isset($this->aRouter[$method][$route])) {            
             $currentRoute = $this->aRouter[$method][$route];
             $aPasteRoute = explode("@", $currentRoute);
             include "src/Controllers/".$aPasteRoute[0].".php";

@@ -1,12 +1,15 @@
 <?php
+// session_start();
 include "src/Views/header.php";
 include "src/Views/navigation.php";
 ?>
 <div class="ui text container">
-    <form class="ui form" method="POST" action="">
+    <?php   include "src/Views/messages.php";
+    ?>
+    <form class="ui form" method="POST" action="handleRegister">
         <div class="field">
             <label>Username</label>
-            <input type="text" name="userName" placeholder="Username">
+            <input type="text" name="username" placeholder="username">
         </div>
         <div class="field">
             <label>Email</label>

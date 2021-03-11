@@ -5,7 +5,12 @@ class Request
 {
     public static function route()
     {
-        return isset($_REQUEST['route']) ? $_REQUEST['route'] : 'home';
+        if (isset($_SERVER['REQUEST_URI']) && !empty($_SERVER['REQUEST_URI'])) {
+            $aParseURL = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+            return isset($aParseURL[0]) ? $aParseURL[0] : 'login';
+        }
+
+        return isset($_REQUEST['route']) ? $_REQUEST['route'] : 'login';
     }
 
     public static function method()

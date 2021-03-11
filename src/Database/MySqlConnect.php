@@ -1,7 +1,11 @@
 <?php
 
 namespace Basic\Database;
+use Basic\Core\App as App;
+use Basic\Database\ConstructPostsTable as ConstructPostsTable;
+use Basic\Database\ConstructUsersTable as ConstructUsersTable;
 
+$GLOBALS['aDb'] = include "configs/database.php";
 class MySqlConnect
 {
     protected $where;
@@ -9,28 +13,30 @@ class MySqlConnect
     protected $sql = "";
     protected string $pluck =  "*";
     protected string $table;
-    protected static $oDb;
-
+    public static $oDb;
     private static $self;
-
-
+    public  ?string $connectErr = null;
+    
     public function __construct()
     {
         if (!self::$oDb) {
-            $oDb = new \mysqli(
-                'localhost',
-                'root',
-                '',
-                'basic_php'
+            App::set('configs/database', $GLOBALS['aDb']);
+            self::$oDb = new \mysqli(
+                App::get('configs/database')['host'],   
+                App::get('configs/database')['username'], 
+                App::get('configs/database')['password'],
+                App::get('configs/database')['db']
             );
-            if ($oDb->connect_errno) {
-                die("We could not connect to the database due to : " . $oDb->connect_error);
+            if (self::$oDb->connect_errno) {
+                echo "Failed to connect to MySQL: " . self::$oDb->connect_error;
+                die;
             }
-
-            self::$oDb = $oDb;
+            ConstructPostsTable::createPostsTable();
+            ConstructUsersTable::createUsersTable();
+            ConstructUsersTable::createDummyAccount();
         }
     }
-
+    
     public static function connect()
     {
         if (!self::$self) {
@@ -38,7 +44,6 @@ class MySqlConnect
         }
         return self::$self;
     }
-
 
     public function table($table)
     {
@@ -57,13 +62,13 @@ class MySqlConnect
     {
         $aKeys = array_keys($aWhere);
         $this->where =  array_reduce($aKeys, function ($carry, $key) use ($aWhere, $condition) {
-            $build = $key . " = " . '"' . $aWhere[$key] .'"';
+            $build = $key . " = " . '"' . $aWhere[$key] . '"';
             if (!$carry) {
                 $carry = "{$build}";
-            }else {
+            } else {
                 $carry = "{$carry} {$condition} {$build}";
             }
-            return $carry;            
+            return $carry;
         });
         return $this;
     }
@@ -72,14 +77,14 @@ class MySqlConnect
     {
         $aKeys = array_keys($aOrWhere);
         $this->orWhere = array_reduce($aKeys, function ($carry, $key) use ($aOrWhere, $condition) {
-            $build = $key . " = " . '"' . $aOrWhere[$key] .'"';
+            $build = $key . " = " . '"' . $aOrWhere[$key] . '"';
 
             if (!$carry) {
                 $carry = "{$build}";
-            }else {
+            } else {
                 $carry = "{$carry} {$condition} {$build}";
             }
-            return $carry;            
+            return $carry;
         });
         return $this;
     }
@@ -96,22 +101,25 @@ class MySqlConnect
             }
             return $carry;
         });
-        return $this;        
-    }
-
-    public function values($values)
-    {
-        $aTableCol = array();
-        $aValues = array();
-        $keys = array_keys($values);
-        for ($i = 0; $i < count($values); $i++) {
-            array_push($aTableCol,  $keys[$i]);
-            array_push($aValues,  '"' . $values[$keys[$i]] . '"');
-        }
-        $this->tableCol = implode(", ", $aTableCol);
-        $this->aValues = implode(", ", $aValues);
         return $this;
     }
+
+    public function values($aValues)
+    {
+        $aKeys = array_keys($aValues);
+        $this->tableCol = implode(", ", $aKeys);
+        $this->aValues = array_reduce($aKeys, function ($carry, $key) use ($aValues) {
+            $build = '"' . $aValues[$key] . '"';
+            if (!$carry) {
+                $carry = "{$build}";
+            } else {
+                $carry = "{$carry} , {$build}";
+            }
+            return $carry;
+        });
+        return $this;
+    }
+
 
     public function select()
     {
@@ -122,16 +130,15 @@ class MySqlConnect
                 $sql .= " OR $this->orWhere";
             }
         }
-        $result =  self::$oDb->query($sql);
+        $result = mysqli_fetch_all(self::$oDb->query($sql), MYSQLI_ASSOC);
         return $result;
     }
 
     public function insert()
     {
         $sql = "INSERT INTO $this->table ({$this->tableCol}) VALUES ({$this->aValues})";
+        // echo $sql;die;  
         $this->query =  self::$oDb->query($sql);
-        // echo $sql;
-        // die;
         return $this->query;
     }
 
@@ -143,8 +150,6 @@ class MySqlConnect
         if (isset($this->orWhere)) {
             $sql .= " OR $this->orWhere";
         }
-        echo $sql;
-        die;
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }
@@ -156,8 +161,6 @@ class MySqlConnect
         if (isset($this->orWhere)) {
             $sql .= " OR $this->orWhere";
         }
-        echo $sql;
-        die;
         $this->query =  self::$oDb->query($sql);
         return $this->query;
     }

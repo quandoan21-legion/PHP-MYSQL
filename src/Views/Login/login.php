@@ -3,10 +3,13 @@ include "src/Views/header.php";
 include "src/Views/navigation.php";
 ?>
 <div class="ui text container">
+    <?php
+    include "src/Views/messages.php";
+    ?>
     <form class="ui form" method="POST" action="handleLogin">
         <div class="field">
             <label>Username</label>
-            <input type="text" name="userName" placeholder="Username">
+            <input type="text" name="usernameOrEmail" placeholder="Username Or Email">
         </div>
         <div class="field">
             <label>Password</label>
@@ -18,3 +21,4 @@ include "src/Views/navigation.php";
 <?php
 include "src/Views/footer.php";
 ?>
+
