@@ -67,7 +67,6 @@
         })
         $logout.on("click", function(event) {
             event.preventDefault();
-            $msg.html("");
             jQuery.ajax({
                 type: "POST",
                 url: "form-handler.php",
