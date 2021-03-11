@@ -28,7 +28,6 @@
 
             <button type="submit" id="submit">LogIn</button>
         </form>
-    <?php else : ?>
 
     <?php endif; ?>
 
@@ -39,9 +38,7 @@
         $form.on('submit', function(event) {
             event.preventDefault();
 
-            console.log(jQuery('#formLogin').serializeArray()),
-
-                $msg.html("");
+            $msg.html("");
             jQuery.ajax({
                 type: 'POST',
                 url: 'login.php',
