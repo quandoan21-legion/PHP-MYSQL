@@ -10,22 +10,12 @@
 </head>
 
 <body>
-    <?php
-    $userLoggedIn = false;
-    if (isset($_SESSION['status'])) {
-        if ($_SESSION['status'] == 'success') {
-            echo "logged in successfully";
-            $userLoggedIn = true; ?>
-            <a href="logout.php">LogOut</a>
-    <?php
-        } else {
-            echo $_SESSION['msg'];
-        }
-    }
-    ?>
     <?php if (!$userLoggedIn) : ?>
-        <h1>Login</h1>
+        <div id="msg"></div>
+        <div id="loggedIn"></div>
+
         <form action="login.php" id="formLogin" method="post">
+            <h1>Login</h1>
             <p>
                 <label for="username">Username</label> <br>
                 <input type="text" name="username" id="username" placeholder="Username"> <br>
@@ -38,19 +28,34 @@
 
             <button type="submit" id="submit">LogIn</button>
         </form>
+    <?php else : ?>
+
     <?php endif; ?>
+
     <script src="../../assets/js/jquery-3.1.1.min.js"></script>
     <script>
-        jQuery('#submit').on('click', function(event) {
+        const $msg = jQuery("#msg");
+        const $form = jQuery("#formLogin");
+        $form.on('submit', function(event) {
             event.preventDefault();
-            console.log(response.status);
+
+            console.log(jQuery('#formLogin').serializeArray()),
+
+                $msg.html("");
             jQuery.ajax({
                 type: 'POST',
                 url: 'login.php',
                 data: jQuery('#formLogin').serializeArray(),
-                success: function (response) {
+                success: function(response) {
+
                     const oResponse = JSON.parse(response);
-                    console.log(oResponse);
+
+                    if (oResponse.status === "error") {
+                        $msg.html(oResponse.msg);
+                    } else {
+                        jQuery("#loggedIn").html(`Hello, ${oResponse.user.username} ! <a href="logout.php">LogOut</a>`);
+                        $form.remove();
+                    }
                 }
             })
         })

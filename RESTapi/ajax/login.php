@@ -10,8 +10,8 @@ $aFindedUser = array_filter($aUsers, function($aUser){
 });
 
 if (!empty($aFindedUser)) {
-    $_SESSION['loggedin'] = $aFindedUser[0];
-    $aResponse = ['status' => 'success', 'user' => $aFindedUser[0]['username']];
+    $_SESSION['loggedIn'] = $aFindedUser[0];
+    $aResponse = ['status' => 'success', 'user' => $aFindedUser[0]];
 } else {
     $aResponse = ['status' => 'error', 'msg' => 'Invalid username and password'];
 }
