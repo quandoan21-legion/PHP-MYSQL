@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX</title>
+    <title>Document</title>
     <style>
         .hidden {
             display: none;
@@ -14,11 +14,11 @@
     </style>
 
 <body>
+    <div id="msg"></div>
+    <div id="logedIn"></div>
+    <a id="logout" class="<?php echo $userLoggedIn ? "" : "hidden"; ?>" href="logout.php">logout</a>
     <?php if (!$userLoggedIn) : ?>
-        <div id="msg"></div>
-        <div id="loggedIn"></div>
-        <a id="logout" class="<?php echo $userLoggedIn ? "" : "hidden" ?>" href="logout.php">logout</a>
-        <form action="login.php" id="formLogin" method="post">
+        <form action="form-handler.php" id="formLogin" method="post">
             <h1>Login</h1>
             <p>
                 <label for="username">Username</label> <br>
@@ -39,10 +39,10 @@
     <script>
         $msg = jQuery("#msg");
         $formLogin = jQuery("#formLogin");
-        $loggedIn = jQuery("#loggedIn");
+        $logedIn = jQuery("#logedIn");
         $logout = jQuery("#logout");
-        let oResponse = {};
-        jQuery("#formLogin").on("submit", function(event) {
+
+        $formLogin.on("submit", function(event) {
             event.preventDefault();
             $msg.html("");
             jQuery.ajax({
@@ -50,22 +50,24 @@
                 url: "form-handler.php",
                 data: {
                     info: jQuery("#formLogin").serializeArray(),
-                    action: 'logout'
+                    action: 'login'
+
                 },
                 success: function(response) {
-                    oResponse = JSON.parse(response);
+                    let oResponse = JSON.parse(response);
                     if (oResponse.status === "error") {
                         $msg.html(oResponse.msg)
                     } else {
-                        $loggedIn.html(`Hi ${oResponse.user.username}, welcome back!`),
+                        $logedIn.html(`Hi ${oResponse.user.username}, welcome back!`),
+                            $logout.removeClass('hidden'),
                             $formLogin.remove()
-                        $logout.removeClass('hidden')
                     }
                 }
             })
         })
         $logout.on("click", function(event) {
             event.preventDefault();
+            $msg.html("");
             jQuery.ajax({
                 type: "POST",
                 url: "form-handler.php",
@@ -73,14 +75,16 @@
                     action: 'logout'
                 },
                 success: function(response) {
-                    oResponse = JSON.parse(response);
+                    let oResponse = JSON.parse(response);
                     if (oResponse.status === 'success') {
-                        window.reload();
+                        $msg.html(oResponse.msg),
+                            window.location.reload()
                     } else {
                         alert(oResponse.msg);
                     }
                 }
             })
+
         })
     </script>
 </body>
