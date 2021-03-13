@@ -1,2 +1,2 @@
-<?php 
-require_once "src/Core/bootstrap.php";
+<?php
+require_once "vendor/autoload.php";

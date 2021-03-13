@@ -13,5 +13,8 @@
     "phpunit/phpunit": "^7.2",
     "wilokecom/phpcli": "^1.22",
     "vimeo/psalm": "^4.6"
+  },
+  "require": {
+    "vlucas/phpdotenv": "^2.4"
   }
 }

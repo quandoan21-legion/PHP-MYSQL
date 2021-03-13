@@ -1,12 +1,7 @@
 {
   "autoload": {
     "psr-4": {
-      "Basic\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "BasicTest\\": "tests/"
+      "RESTapi\\": "src/"
     }
   },
   "require-dev": {

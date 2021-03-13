@@ -43,47 +43,48 @@
         $logout = jQuery("#logout");
 
         $formLogin.on("submit", function(event) {
-            event.preventDefault();
-            $msg.html("");
+            event.preventDefault()
+            $msg.html("")
             jQuery.ajax({
                 type: "POST",
-                url: "form-handler.php",
+                url: "../server/src/Core/bootstrap.php",
                 data: {
-                    info: jQuery("#formLogin").serializeArray(),
-                    action: 'login'
-
+                    type:'GET',
+                    info: $formLogin.serializeArray(),
+                    action: 'login',
                 },
                 success: function(response) {
-                    let oResponse = JSON.parse(response);
-                    if (oResponse.status === "error") {
-                        $msg.html(oResponse.msg)
+                    let {status,msg,user} = response;
+                    if (status == 'success') {
+                        $formLogin.remove();
+                        $logout.removeClass('hidden');
+                        $logedIn.html(`Hi ${user}`);
                     } else {
-                        $logedIn.html(`Hi ${oResponse.user.username}, welcome back!`),
-                            $logout.removeClass('hidden'),
-                            $formLogin.remove()
+                        $msg.html(msg);
                     }
                 }
             })
         })
+
         $logout.on("click", function(event) {
-            event.preventDefault();
+            event.preventDefault()
+            $msg.html("")
             jQuery.ajax({
                 type: "POST",
                 url: "form-handler.php",
                 data: {
-                    action: 'logout'
+                    action: 'logout',
                 },
                 success: function(response) {
-                    let oResponse = JSON.parse(response);
-                    if (oResponse.status === 'success') {
-                        $msg.html(oResponse.msg),
-                            window.location.reload()
+                    let {status,msg} = response;
+                    if (status == 'success') {
+                        $msg.html(msg),
+                        window.location.reload()
                     } else {
-                        alert(oResponse.msg);
+                        alert(msg)
                     }
                 }
             })
-
         })
     </script>
 </body>

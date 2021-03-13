@@ -1,12 +1,12 @@
 <?php
 
-namespace Basic\Database;
+namespace RESTapi\Database;
 
 class DBConnector
 {
     private static $oSelf = null;
-    public \mysqli $oDB;
-    
+    public  \mysqli $oDB;
+
     public function __construct()
     {
         $host     = getenv("DB_HOST");
@@ -18,19 +18,18 @@ class DBConnector
         try {
             $this->oDB = new \mysqli(
                 $host,
-                $port,
-                $db,
                 $username,
                 $password,
+                $db,
+                $port,
             );
-        }
-
-        catch (\Exception $oException) {
+        } catch (\Exception $oException) {
             exit($oException->getMessage());
         }
     }
 
-    public static function connect(): ?DBConnector {
+    public static function connect(): ?DBConnector
+    {
         if (self::$oSelf === null) {
             self::$oSelf = new self();
         }
