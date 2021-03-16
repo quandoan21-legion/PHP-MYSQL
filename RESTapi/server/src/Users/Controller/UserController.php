@@ -9,12 +9,14 @@ class UserController
 {
     
     protected string $requestMethod;
+    protected string $requestAction;
 
     protected int $userID;
 
-    public function __construct($requestMethod, $username, $password)
+    public function __construct($requestMethod, $requestAction, $username, $password)
     {
         $this->requestMethod = $requestMethod;
+        $this->requestAction = $requestAction;
         $this->username      = $username;
         $this->password      = $password;
     }
@@ -23,35 +25,47 @@ class UserController
     {
         switch ($this->requestMethod) {
             case 'POST':
+                switch ($this->requestAction) {
+                    case 'logout':
+                        session_destroy();
+                        $aResponse = [
+                            'status' => 'success',
+                            'msg'    => 'you have logout successfully'
+                        ];
+                        return json_encode($aResponse);
+                        break;
+                }
                 break;
-                header("HTTP/1.1 200 oK");
             case 'GET':
-                if ($this->username) {
-                    $aResponse  = [
-                        "item"  => $this->find($this->username, $this->password),
-                    ];
-                        if (isset($aResponse['item'][0]) === true) {
-                            $aResponseVal =  [
-
-                                'status' => 'success',
-                                'user'   => $aResponse['item'][0]['username'],
-
+                switch ($this->requestAction) {
+                    case 'login':
+                        if ($this->username) {
+                            $aResponse  = [
+                                "item"  => $this->find($this->username, $this->password),
                             ];
-                            return json_encode($aResponseVal);
-                        }
-                        else {
-                            $aResponseVal =  [
+                            if (isset($aResponse['item'][0]) === true) {
+                                $aResponseVal =  [
 
-                                'status' => 'error',
-                                'msg'    => 'Invalid username or password',
+                                    'status' => 'success',
+                                    'user'   => $aResponse['item'][0]['username'],
 
+                                ];
+                                return json_encode($aResponseVal);
+                            } else {
+                                $aResponseVal =  [
+
+                                    'status' => 'error',
+                                    'msg'    => 'Invalid username or password',
+
+                                ];
+                                return json_encode($aResponseVal);
+                            }
+                        } else {
+                            $aResponse  = [
+                                "items" => $this->findAll(),
                             ];
-                            return json_encode($aResponseVal);
                         }
-                } else {
-                    $aResponse  = [
-                        "items" => $this->findAll(),
-                    ];
+                        break;
                 }
                 break;
 

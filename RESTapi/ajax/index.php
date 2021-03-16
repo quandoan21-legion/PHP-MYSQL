@@ -16,7 +16,9 @@
 <body>
     <div id="msg"></div>
     <div id="logedIn"></div>
-    <a id="logout" class="<?php echo $userLoggedIn ? "" : "hidden"; ?>" href="logout.php">logout</a>
+    <button type="submit" id="logout" class="<?php echo $userLoggedIn ? "" : "hidden"; ?>">
+        <a href="logout.php">logout</a>
+    </button>
     <?php if (!$userLoggedIn) : ?>
         <form action="form-handler.php" id="formLogin" method="post">
             <h1>Login</h1>
@@ -49,7 +51,7 @@
                 type: "POST",
                 url: "../server/src/Core/bootstrap.php",
                 data: {
-                    type:'GET',
+                    type: 'GET',
                     info: $formLogin.serializeArray(),
                     action: 'login',
                 },
@@ -66,20 +68,20 @@
             })
         })
 
-        $logout.on("click", function(event) {
+        $logout.on("submit", function(event) {
             event.preventDefault()
-            $msg.html("")
             jQuery.ajax({
                 type: "POST",
-                url: "form-handler.php",
+                url: "../server/src/Core/bootstrap.php",
                 data: {
+                    type: "POST",
                     action: 'logout',
                 },
                 success: function(response) {
-                    let {status,msg} = response;
+                    let {status,msg,user} = response;
                     if (status == 'success') {
                         $msg.html(msg),
-                        window.location.reload()
+                            window.location.reload()
                     } else {
                         alert(msg)
                     }

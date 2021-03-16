@@ -29,7 +29,8 @@ foreach ($aRawUserInfo as $aUserInfo) {
   $aMyUser[$aUserInfo['name']] = $aUserInfo['value'];
 }
 $requestMethod = $_POST['type'];
+$requestAction = $_POST['action'];
 
-$aResult = (new UserController($requestMethod, $aMyUser['username'], $aMyUser['password']))->userGateway();
+$aResult = (new UserController($requestMethod, $requestAction, $aMyUser['username'], $aMyUser['password']))->userGateway();
 echo $aResult;
 exit;
