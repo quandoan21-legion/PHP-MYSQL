@@ -16,9 +16,10 @@
 <body>
     <div id="msg"></div>
     <div id="logedIn"></div>
-    <button type="submit" id="logout" class="<?php echo $userLoggedIn ? "" : "hidden"; ?>">
-        <a href="logout.php">logout</a>
-    </button>
+    <div id="logedIn"></div>
+    <a type="submit" id="logout" class="<?php echo $userLoggedIn ? "" : "hidden"; ?>">
+        logout
+    </a>
     <?php if (!$userLoggedIn) : ?>
         <form action="form-handler.php" id="formLogin" method="post">
             <h1>Login</h1>
@@ -33,6 +34,7 @@
             </p>
 
             <button type="submit" id="submit">LogIn</button>
+            <button type="submit" id="register">Register</button>
         </form>
 
     <?php endif; ?>
