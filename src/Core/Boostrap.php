@@ -4,7 +4,6 @@ require "vendor/autoload.php";
 // use Basic\Core\Request as Request;
 
 $aRouter = include "configs/router.php";
-
 function loadView($file){
   if (strpos($file, ".php") === false) {
     $file .= ".php";

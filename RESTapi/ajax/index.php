@@ -13,7 +13,7 @@
         }
     </style>
 
-<body>
+<body>   
     <div id="msg"></div>
     <div id="logedIn"></div>
     <div id="logedIn"></div>
