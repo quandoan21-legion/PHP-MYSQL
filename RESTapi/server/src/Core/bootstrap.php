@@ -2,15 +2,14 @@
 session_start();
 require_once "../../vendor/autoload.php";
 
+use Dotenv\Dotenv;
 use RESTapi\Database\DBConnector;
 use RESTapi\Users\Controller\UserController;
-use Dotenv\Dotenv;
 
 global $wpdb;
 
-$dotenv = new DotEnv(dirname(dirname(__DIR__)));
+$dotenv = new Dotenv(dirname(dirname(__DIR__)));
 $dotenv->load();
-
 $oDBConnector = DBConnector::connect();
 
 /**
@@ -18,6 +17,11 @@ $oDBConnector = DBConnector::connect();
  */
 
 $wpdb = $oDBConnector->oDB;
+
+// echo "<pre>";
+// var_export($wpdb);
+// echo "</pre>";die;
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json, charset= UTF-8");
 header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");

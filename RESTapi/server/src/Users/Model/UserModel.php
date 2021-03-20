@@ -1,6 +1,5 @@
 <?php 
 namespace RESTapi\Users\Model;
-use RESTapi\Database;
 
 
 class UserModel
@@ -45,7 +44,7 @@ class UserModel
     public static function getUser($username, $password): array {
 
         global $wpdb;
-        $sql = ("SELECT * FROM " . self::$tblName . " where username = '" . $username. "' AND password = '" . $password ."'");
+        $sql = ("SELECT * FROM " . self::$tblName . ' where username = "' . $username. '" AND password = "' . $password .'"');
         $oResult = mysqli_fetch_all($wpdb->query($sql), MYSQLI_ASSOC);
         // var_export($oResult);die;
 
